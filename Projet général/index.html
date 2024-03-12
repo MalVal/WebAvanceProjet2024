@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ProjectGroup</title>
+    <link rel="stylesheet" href="src/CSS/stylelogInSignUp.css">
+    <link rel="stylesheet" href="src/CSS/style.css">
+
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./src/JS/main.js"></script>
+    <script defer src = "src/JS/mainlogInSignUp.js"></script>
+</head>
+<body>
+<header>
+    <div class="logo">
+        <a href="./index.html"><img src="./Image/SuperGameLauncher.png" alt="SuperGameLauncher" id="SuperGameLauncher"></a>
+    </div>
+    <div class="tete">
+        <a href="#" id="showLoginForm"><img src="./Image/Unknow.png" alt="UnknowLog" id="Unknow"></a>
+    </div>
+</header>
+
+<main>
+    <div class="gallery">
+        <div class="row">
+            <div class="column">
+                <a href="#"><img src="./Image/adibou.jpeg" alt="adibou"></a>
+            </div>
+            <div class="column">
+                <a href="#"><img src="./Image/Fornite.jpeg" alt="Fornite"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <a href="#"><img src="./Image/GTA5.jpeg" alt="GTA5"></a>
+            </div>
+            <div class="column">
+                <a href="#"><img src="./Image/MarioKart.jpeg" alt="MarioKart"></a>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <a href="#"><img src="./Image/SubwaySurfer.jpeg" alt="SubwaySurfer"></a>
+            </div>
+        </div>
+    </div>
+</main>
+
+<div id="loginForm" class="hidden form-structor">
+    <div class="signup hidden">
+        <h2 class="form-title" id="signup">Sign up</h2>
+        <div class="form-holder">
+            <input type="text" id="signupName" class="input" placeholder="Name" />
+            <input type="email" class="input" placeholder="Email" />
+            <input type="password" id="signupPass" class="input" placeholder="Password" />
+        </div>
+        <button class="submit-btn">Sign up</button>
+        <div class="remember-me">
+            <input type="checkbox" id="rememberMesignUp">
+            <label for="rememberMesignUp">Remember me</label>
+        </div>
+        <div class="buttons-container">
+            <button id="SignLogIn" class="sendTo-btn">Log in</button>
+        </div>
+    </div>
+    <div class="login">
+        <div class="center">
+            <h2 class="form-title" id="login">Log in</h2>
+            <div class="form-holder">
+                <input type="text" id="loginName" class="input" placeholder="Name" />
+                <input type="password" id="loginPass" class="input" placeholder="Password" />
+            </div>
+            <button class="submit-btn">Log in</button>
+            <div class="remember-me">
+                <input type="checkbox" id="rememberMelogIn">
+                <label for="rememberMelogIn">Remember me</label>
+            </div>
+            <div class="buttons-container">
+                <button id="LogSignUp" class="sendTo-btn">Sign up</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

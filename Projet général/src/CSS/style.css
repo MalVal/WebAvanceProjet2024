@@ -1,0 +1,95 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #DCEDFF;
+}
+
+header {
+    background-color: #94B0DA;
+    color: #343F3E;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo a {
+    color: #343F3E;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.tete a {
+    color: #343F3E;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+main {
+    padding: 20px;
+}
+
+.gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.column {
+    margin: 0 10px;
+}
+
+.column a {
+    display: block;
+    margin-bottom: 10px;
+}
+
+.gallery img {
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+}
+
+@media screen and (max-width: 600px) {
+    .column {
+        flex: 1;
+    }
+}
+
+.blur {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+#loginForm {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    height: auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    border-radius: 5px;
+}
+
+#SuperGameLauncher {
+    width: 50%;
+}
+
+#Unknow {
+    width: 75%;
+    border-radius: 50%;
+}

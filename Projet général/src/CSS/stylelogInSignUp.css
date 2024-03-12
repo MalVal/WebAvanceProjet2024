@@ -1,0 +1,138 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f1f1f1;
+}
+
+/* Styles communs */
+.form-structor {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    flex-direction: column;
+    position: relative;
+}
+
+.form-title {
+    color: #505A5B;
+    text-align: center;
+}
+
+.form-holder {
+    margin-top: 20px;
+}
+
+.input, .submit-btn, .sendTo-btn {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input {
+    border: 1px solid #8F91A2;
+    box-sizing: border-box;
+}
+
+.submit-btn {
+    background-color: #94B0DA;
+    color: #fff;
+    border: none;
+}
+
+.sendTo-btn {
+    background-color: #DCEDFF;
+    color: #333;
+    max-width: 250px;
+}
+
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.submit-btn:hover {
+    background-color: #758aad;
+}
+
+.sendTo-btn:hover {
+    background-color: #a5c5e4;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 5px;
+}
+
+.remember-me label {
+    color: #333;
+}
+
+/* Styles spécifiques à l'animation */
+.signup, .login {
+    position: absolute;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    margin-bottom: 20px;
+    z-index: 1;
+}
+
+.login {
+    z-index: 2;
+}
+
+.slide-up, .slide-down {
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1;
+    animation-duration: 0.5s;
+    animation-timing-function: ease;
+}
+
+.slide-up {
+    animation: slideUp;
+}
+
+.slide-down {
+    animation: slideDown;
+}
+
+.hidden {
+    display: none;
+}
+
+@keyframes slideUp {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-100%);
+    }
+}
+
+@keyframes slideDown {
+    0% {
+        transform: translateY(100%);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
