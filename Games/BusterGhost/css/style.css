@@ -1,0 +1,32 @@
+body
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: darkcyan;
+}
+
+section
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+canvas
+{
+    background-image: url("../img/background.jpg");
+}
+
+#gameData
+{
+    display: flex;
+    flex-direction: row;
+}
+
+#gameData>p
+{
+    margin-left: 20px;
+}
