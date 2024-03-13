@@ -7,15 +7,24 @@ Bienvenue dans notre projet de fin d'année en programmation web avancée 2024. 
 1. **Jeu de Valentin** - Un jeu passionnant développé par Valentin MALCHAIR.
    - Repository : [BusterGhost](https://github.com/MalVal/WebAvanceProjet2024/tree/main/Games/BusterGhost)
 
+   ![BusterGhost](lien_vers_image_busterghost.gif)
+
 2. **Jeu d'Ethan** - Un autre jeu palpitant créé par Ethan VERSTRINGE.
    - Repository : [JeuEthan](lien_vers_le_repo)
+
+   ![JeuEthan](lien_vers_image_jeuethan.gif)
 
 3. **2048** - Une version web du célèbre jeu de puzzle, développée par Lukas RICHARD.
    - Repository : [2048](lien_vers_le_repo)
 
+   ![2048](lien_vers_image_2048.gif)
+
 4. **Froggy Jump** - Un jeu amusant mettant en vedette les talents de Simon LECOCK.
    - Repository : [FroggyJump](lien_vers_le_repo)
+
+   ![FroggyJump](lien_vers_image_froggyjump.gif)
 
 5. **Aim Trainer** - Développé par Gauthier DISCART, un jeu pour améliorer votre précision de tir.
    - Repository : [AimTrainer](lien_vers_le_repo)
 
+   ![AimTrainer](lien_vers_image_aimtrainer.gif)
