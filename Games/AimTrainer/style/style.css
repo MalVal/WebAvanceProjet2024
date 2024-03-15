@@ -1,0 +1,35 @@
+canvas {
+    margin:3em auto 0;
+    display: block;
+    box-shadow: 0px 0px 10px 0px lightslategrey;
+    width: 80%;
+    height: 60%;
+}
+
+#Container {
+    display: flex;
+    justify-content: space-around; /* Pour répartir les éléments de manière égale */
+    align-items: center; /* Aligner les éléments verticalement au centre */
+    margin-top: 1em;
+}
+
+#Score {
+    margin-left: 10px;
+}
+
+#ScoreContainer {
+    display: flex;
+}
+
+#HeartContainer {
+    display: flex;
+}
+
+.Heart {
+    color: red;
+    margin: 10px;
+    height: 40px;
+    width: 30px;
+    cursor: help;
+}
+
