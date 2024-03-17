@@ -5,7 +5,7 @@ export const settings = {
         maxLife: 150,
         damage: 15
     },
-    enemi: {
+    enemy: {
         width: 35,
         height: 25,
         maxLife: 100,
@@ -17,5 +17,8 @@ export const settings = {
         health: 10,
         timeSpawnMin: 5000,
         timeSpawnMax: 10000
+    },
+    score:{
+        decreasingHeart: 100
     }
 }
