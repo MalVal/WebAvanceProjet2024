@@ -29,14 +29,18 @@ export class Player extends AliveEntity
         }
     }
 
-    draw()
+    drawDamageZone()
     {
         if(this.attack.ready === false) // Draw damage area
         {
             this.context.fillStyle = 'yellow';
             this.context.fillRect(this.position.x-20, this.position.y-20, this.width+40, this.height+40);
         }
+    }
 
+    draw()
+    {
+        this.drawDamageZone();
         this.drawLifeBar();
         this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);
     }
@@ -45,7 +49,7 @@ export class Player extends AliveEntity
     {
         this.pointOfLive = this.maxLife;
         this.position = {x: 150, y: 150};
-        this.velocity = {x: 0, y: 0};
+        this.stopMoving();
         this.keys = {
             right:
             {
@@ -120,5 +124,6 @@ export class Player extends AliveEntity
         }
 
         this.draw(); // Draw the entity
+        this.updateKey();
     }
 }

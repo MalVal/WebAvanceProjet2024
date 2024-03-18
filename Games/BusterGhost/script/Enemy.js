@@ -1,13 +1,15 @@
 import { AliveEntity } from "./AliveEntity.js";
 import { images } from './main.js';
+import {settings} from "./settings";
 
 export class Enemy extends AliveEntity
 {
     constructor(x, y, width, height, maxLife, canvas)
     {
         super(x, y, width, height, maxLife, canvas);
-        this.image = images[4]; // Image of the enemi
+        this.image = images[4]; // Image of the enemy
         this.state = false; // Have to change the mouth ?
+        this.attack = {ready: true};
     }
 
     update()
@@ -66,6 +68,21 @@ export class Enemy extends AliveEntity
         else
         {
             this.velocity.y = -1;
+        }
+    }
+
+    attack1(entity)
+    {
+        if(this.attack.ready === true)
+        {
+            this.attack.ready = false;
+
+            entity.pointOfLive -= settings.enemy.damage;
+
+            setTimeout(() =>
+            {
+                this.attack.ready = true;
+            }, 1000);
         }
     }
 }

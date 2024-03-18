@@ -16,7 +16,8 @@ export const settings = {
         height: 25,
         health: 10,
         timeSpawnMin: 5000,
-        timeSpawnMax: 10000
+        timeSpawnMax: 10000,
+        disappearance: 10000
     },
     score:{
         decreasingHeart: 100

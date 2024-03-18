@@ -11,6 +11,12 @@ export class Entity
         this.context = this.canvas.getContext('2d');
     }
 
+    stopMoving()
+    {
+        this.velocity.x = 0;
+        this.velocity.y = 0;
+    }
+
     draw()
     {
         this.context.drawImage(this.image, this.position.x, this.position.y, this.width, this.height);

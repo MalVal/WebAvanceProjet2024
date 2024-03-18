@@ -10,7 +10,7 @@ export class Game
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
         this.canvas.width = window.innerWidth-100;
-        this.canvas.height = window.innerHeight-150;
+        this.canvas.height = window.innerHeight-250;
         this.startButton = startButton;
         this.paragraphPol = paragraphPol;
         this.paragraphNok = paragraphNok;
@@ -23,7 +23,7 @@ export class Game
         this.enemies = []; // The container for the enemies
         this.hearts = []; // The container for the hearts
         this.gameStart = false; // The state of the game
-        this.heartReady = true;
+        this.heartReady = true; // Can a heart spawn ?
 
         this.player = new Player(150, 150, settings.player.width, settings.player.height, settings.player.maxLife, this.canvas); // The main player
   
@@ -31,6 +31,10 @@ export class Game
             Bind methods to 'this' to ensure proper access to 'this' context
             Use the functions before their definition
         */
+        this.setupEventListeners = this.setupEventListeners.bind(this);
+        this.startGame = this.startGame.bind(this);
+        this.handleKeyDown = this.handleKeyDown.bind(this);
+        this.handleKeyUp = this.handleKeyUp.bind(this);
         this.isOccupied = this.isOccupied.bind(this);
         this.getNewPosition = this.getNewPosition.bind(this);
         this.createEnemies = this.createEnemies.bind(this);
@@ -39,78 +43,91 @@ export class Game
         this.updateDisplay = this.updateDisplay.bind(this);
         this.animate = this.animate.bind(this);
 
-        /*
-            The button to start the game
-        */
+        // Creation of the eventListeners
+        this.setupEventListeners();
+    }
+
+    setupEventListeners()
+    {
+        //The button to start the game
         this.startButton.addEventListener("click", () =>
         {
-            this.gameStart = true;
-            this.startButton.style.display = "none";
-            this.animate();
+            this.startGame();
         });
 
-        /*
-            Event for the pressed key
-        */
+        //Event for the pressed key
         window.addEventListener('keydown', (event) =>
-            {
-                if(this.gameStart)
-                {
-                    switch(event.key)
-                    {
-                        case "ArrowLeft": // Left
-                        case 'q':
-                            this.player.keys.left.pressed = true;
-                            break;
-                        case "ArrowUp": // Up
-                        case 'z':
-                            this.player.keys.up.pressed = true;
-                            break;
-                        case "ArrowRight": // right
-                        case 'd':
-                            this.player.keys.right.pressed = true;
-                            break;
-                        case "ArrowDown": // Down
-                        case 's':
-                            this.player.keys.down.pressed = true;
-                            break;
-                        case ' ':
-                            this.player.attack1(); // Attack1 of the Player (damage zone)
-                            break;
-                    }
-                }
-            }
-        );
+        {
+            this.handleKeyDown(event);
+        });
 
-        /*
-            Event for the released key
-        */
+        //Event for the released key
         window.addEventListener('keyup', (event) =>
+        {
+            this.handleKeyUp(event);
+        });
+    }
+
+    startGame()
+    {
+        this.gameStart = true;
+        this.startButton.style.display = "none";
+        this.animate();
+    }
+
+    handleKeyDown(event)
+    {
+        if(this.gameStart)
+        {
+            switch(event.key)
             {
-                if(this.gameStart)
-                {
-                    switch(event.key)
-                    {
-                        case "ArrowLeft": // Left
-                        case 'q':
-                            this.player.keys.left.pressed = false;
-                            break;
-                        case "ArrowUp": // Up
-                        case 'z':
-                            this.player.keys.up.pressed = false;
-                            break;
-                        case "ArrowRight": // right
-                        case 'd':
-                            this.player.keys.right.pressed = false;
-                            break;
-                        case "ArrowDown": // Down
-                        case 's':
-                            this.player.keys.down.pressed = false;
-                            break;
-                    }
-                }
+                case "ArrowLeft": // Left
+                case 'q':
+                    this.player.keys.left.pressed = true;
+                    break;
+                case "ArrowUp": // Up
+                case 'z':
+                    this.player.keys.up.pressed = true;
+                    break;
+                case "ArrowRight": // right
+                case 'd':
+                    this.player.keys.right.pressed = true;
+                    break;
+                case "ArrowDown": // Down
+                case 's':
+                    this.player.keys.down.pressed = true;
+                    break;
+                case ' ':
+                    this.player.attack1(); // Attack1 of the Player (damage zone)
+                    break;
             }
-        );
+        }
+    }
+
+    handleKeyUp(event)
+    {
+        if(this.gameStart)
+        {
+            switch(event.key)
+            {
+                case "ArrowLeft": // Left
+                case 'q':
+                    this.player.keys.left.pressed = false;
+                    break;
+                case "ArrowUp": // Up
+                case 'z':
+                    this.player.keys.up.pressed = false;
+                    break;
+                case "ArrowRight": // right
+                case 'd':
+                    this.player.keys.right.pressed = false;
+                    break;
+                case "ArrowDown": // Down
+                case 's':
+                    this.player.keys.down.pressed = false;
+                    break;
+            }
+        }
     }
 
     /*
@@ -122,7 +139,7 @@ export class Game
     }
 
     /*
-        Return TRUE, when the fisrt parameters isn't in the second parameters, else return FALSE
+        Return TRUE, when the first parameters isn't in the second parameters, else return FALSE
     */
     notIn(x1, y1, w1, h1, x2, y2, w2, h2)
     {
@@ -188,9 +205,7 @@ export class Game
         }
     }
 
-    /*
-        Create a heart and put it in the array
-    */
+    // Create a heart and put it in the array
     createHeart()
     {
         let position = this.getNewPosition(settings.heart.width, settings.heart.height);
@@ -199,9 +214,20 @@ export class Game
         return newHeart;
     }
 
-    /*
-        Reset the game
-    */
+    // Delete a heart from the array
+    deleteHeart(heart)
+    {
+        let index = this.hearts.indexOf(heart);
+        if(index !== -1)
+        {
+            this.context.clearRect(heart.position.x, heart.position.y, heart.width, heart.height);
+            this.hearts.splice(index, 1);
+            return true;
+        }
+        return false;
+    }
+
+    // Reset the game
     resetGame()
     {
         this.player.reset(); // Reset the variables of the player
@@ -210,21 +236,22 @@ export class Game
         this.numberOfEnemies = 0;
         this.numberOfKills = 0;
         this.wave = 0;
+        this.startButton.style.display = "block";
+        this.gameStart = false;
+        this.paragraphPol.textContent = "";
+        this.paragraphNok.textContent = "";
+        this.paragraphScore.textContent = "";
     }
 
+    // Update the text
     updateDisplay()
     {
-        if(this.gameStart === true)
-        {
-            this.paragraphPol.textContent = "Points of life : " + this.player.pointOfLive;
-            this.paragraphNok.textContent = "Number of kills : " + this.numberOfKills;
-            this.paragraphScore.textContent = "Score : " + this.score;
-        }
+        this.paragraphPol.textContent = "Points of life : " + this.player.pointOfLive;
+        this.paragraphNok.textContent = "Number of kills : " + this.numberOfKills;
+        this.paragraphScore.textContent = "Score : " + this.score;
     }
 
-    /*
-        Function to animate the game
-    */
+    // Function to animate the game
     animate()
     {
         let anim = requestAnimationFrame(this.animate);
@@ -240,11 +267,6 @@ export class Game
         {
             cancelAnimationFrame(anim); // Stop the animations
             this.resetGame(); // Reset the variables of the game
-            this.startButton.style.display = "block";
-            this.paragraphPol.textContent = "Loser";
-            this.paragraphNok.textContent = "Loser";
-            this.paragraphScore.textContent = "Loser";
-            this.gameStart = false;
             return;
         }
         else
@@ -253,10 +275,9 @@ export class Game
                 Update of the player
             */
             this.player.update();
-            this.player.updateKey();
         }
 
-        let damage = false;
+        let damage = false; // an enemy is in the damage zone ?
         for(let i = 0; i < this.enemies.length; i++)
         {
             /*
@@ -296,13 +317,8 @@ export class Game
                 */
                 if(!this.notIn(this.player.position.x + this.player.velocity.x, this.player.position.y + this.player.velocity.y, this.player.width, this.player.height, this.enemies[i].position.x, this.enemies[i].position.y, this.enemies[i].width, this.enemies[i].height))
                 {
-                    this.player.velocity.x = 0;
-                    this.player.velocity.y = 0;
-                    if(this.enemies[i].attack.ready === true)
-                    {
-                        this.enemies[i].attack1();
-                        this.player.pointOfLive -= settings.enemy.damage;
-                    }
+                    this.player.stopMoving();
+                    this.enemies[i].attack1(this.player);
                 }
 
                 /*
@@ -310,13 +326,8 @@ export class Game
                 */
                 if(!this.notIn(this.player.position.x, this.player.position.y, this.player.width, this.player.height, this.enemies[i].position.x + this.enemies[i].velocity.x, this.enemies[i].position.y + this.enemies[i].velocity.y, this.enemies[i].width, this.enemies[i].height))
                 {
-                    this.enemies[i].velocity.x = 0;
-                    this.enemies[i].velocity.y = 0;
-                    if(this.enemies[i].attack.ready === true)
-                    {
-                        this.enemies[i].attack1();
-                        this.player.pointOfLive -= settings.enemy.damage;
-                    }
+                    this.enemies[i].stopMoving();
+                    this.enemies[i].attack1(this.player);
                 }
 
                 /*
@@ -328,31 +339,46 @@ export class Game
                     {
                         if(!this.notIn(this.enemies[j].position.x + this.enemies[j].velocity.x, this.enemies[j].position.y + this.enemies[j].velocity.y, this.enemies[j].width, this.enemies[j].height, this.enemies[i].position.x, this.enemies[i].position.y, this.enemies[i].width, this.enemies[i].height))
                         {
-                            this.enemies[j].velocity.x = 0;
-                            this.enemies[j].velocity.y = 0;
+                            this.enemies[j].stopMoving();
                         }
 
                         if(!this.notIn(this.enemies[j].position.x, this.enemies[j].position.y + this.enemies[j].velocity.y, this.enemies[j].width, this.enemies[j].height, this.enemies[i].position.x + this.enemies[i].velocity.x, this.enemies[i].position.y + this.enemies[i].velocity.y, this.enemies[i].width, this.enemies[i].height))
                         {
-                            this.enemies[i].velocity.x = 0;
-                            this.enemies[i].velocity.y = 0;
+                            this.enemies[i].stopMoving();
                         }
                     }
                 }
 
                 /*
-                Damage on the enemies
+                    Collision enemy - heart
+                 */
+                for(let i = 0; i < this.hearts.length; i++)
+                {
+                    if(this.hearts[i]) // If the heart still exists
+                    {
+                        if ((!this.notIn(this.enemies[i].position.x + this.enemies[i].velocity.x, this.enemies[i].position.y + this.enemies[i].velocity.y, this.enemies[i].width, this.enemies[i].height, this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height)))
+                        {
+                            if(this.deleteHeart(this.hearts[i]))
+                            {
+                                this.enemies[i].pointOfLive += settings.heart.health;
+                            }
+                        }
+                    }
+                }
+
+                /*
+                    Damage on the enemies
                 */
                 if(this.player.attack.ready === false)
                 {
-                        if(this.player.zone === true) // If the zone can kill
+                    if(this.player.zone === true) // If the zone can kill
+                    {
+                        if(!this.notIn(this.player.position.x - 20, this.player.position.y - 20, this.player.width + 40, this.player.height + 40, this.enemies[i].position.x, this.enemies[i].position.y, this.enemies[i].width, this.enemies[i].height))
                         {
-                            if(!this.notIn(this.player.position.x - 20, this.player.position.y - 20, this.player.width + 40, this.player.height + 40, this.enemies[i].position.x, this.enemies[i].position.y, this.enemies[i].width, this.enemies[i].height))
-                            {
-                                damage = true; // An enemy is in the Player's damage zone
-                                this.enemies[i].pointOfLive -= settings.player.damage; // Damage on the enemi
-                            }
+                            damage = true; // An enemy is in the Player's damage zone
+                            this.enemies[i].pointOfLive -= settings.player.damage; // Damage on the enemy
                         }
+                    }
                 }
             }
         }
@@ -376,53 +402,33 @@ export class Game
             {
                 let heart = this.createHeart();
                 this.heartReady = true;
-                setTimeout(() => 
+                // Destruction of a heart
+                setTimeout(() =>
                 {
-                    if(heart)
+                    if(heart) // If the heart still exists
                     {
-                        let index = this.hearts.indexOf(heart);
-                        if(index !== -1)
-                        {
-                            this.context.clearRect(heart.position.x, heart.position.y, heart.width, heart.height);
-                            this.hearts.splice(index, 1);
-                        }
+                        this.deleteHeart(heart);
                     }
-                }, 10000);
+                }, settings.heart.disappearance);
             }, timeHeart);
         }
 
+        /*
+            Collision player - heart
+        */
         for(let i = 0; i < this.hearts.length; i++)
         {
-            this.hearts[i].update();
-            /*
-                When the player take the heart
-            */
             if((!this.notIn(this.player.position.x + this.player.velocity.x, this.player.position.y + this.player.velocity.y, this.player.width, this.player.height, this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height)))
             {
-                let index = this.hearts.indexOf(this.hearts[i]);
-
-                if(index !== -1)
+                if(this.deleteHeart(this.hearts[i]))
                 {
-                    this.context.clearRect(this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height);
-                    this.hearts.splice(index, 1);
-                    this.player.pointOfLive += settings.heart.health;
+                    this.player.pointOfLive += settings.heart.health; // Gain life
                     this.score -= settings.score.decreasingHeart; // Lose score when we take a heart
                 }
             }
             else
             {
-                for(let i = 0; i < this.enemies.length; i++)
-                {
-                    if ((!this.notIn(this.enemies[i].position.x + this.enemies[i].velocity.x, this.enemies[i].position.y + this.enemies[i].velocity.y, this.enemies[i].width, this.enemies[i].height, this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height)))
-                    {
-                        let index = this.hearts.indexOf(this.hearts[i]);
-                        if (index !== -1) {
-                            this.context.clearRect(this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height);
-                            this.hearts.splice(index, 1);
-                            this.enemies[i].pointOfLive += settings.heart.health;
-                        }
-                    }
-                }
+                this.hearts[i].update();
             }
         }
 

@@ -7,7 +7,6 @@ export class AliveEntity extends Entity
         super(x, y, width, height, canvas);
         this.pointOfLive = maxLife;
         this.maxLife = maxLife;
-        this.attack = {ready: true};
     }
 
     drawLifeBar()
