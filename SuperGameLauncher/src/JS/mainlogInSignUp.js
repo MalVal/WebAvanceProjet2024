@@ -1,33 +1,85 @@
-// Cacher Log In ou SignUp
 const btnSendToLogIn = document.querySelector("#SignLogIn");
 const btnSendToSignUp = document.querySelector("#LogSignUp");
 const LogIn = document.querySelector(".login");
 const SignUp = document.querySelector(".signup");
 const btnLogin = document.querySelector("#btnLogin");
+const btnSignUp = document.querySelector("#btnSignUp");
 
-// Écrire ce qu'il y a dans le nom ou le password dans l'un l'autre
-const SignUpName = document.querySelector("#signupName");
-const LogInPseudo = document.querySelector("#LogInPseudo");
+
+const SignUpPseudo = document.querySelector("#signupPseudo");
+const SignUpSurName = document.querySelector("#signupSurName");
+const SignUpFirstName = document.querySelector("#signupFirstName");
 const SignUpPass = document.querySelector("#signupPass");
+const LogInPseudo = document.querySelector("#LogInPseudo");
 const LogInPass = document.querySelector("#loginPass");
 const CheckBoxSignUp = document.querySelector("#rememberMesignUp");
 const CheckBoxLogIn = document.querySelector("#rememberMelogIn");
+
+btnSignUp.addEventListener("click", () =>
+{
+    const signUpPseudoValue = encodeURIComponent(SignUpPseudo.value);
+    const signUpSurNameValue = encodeURIComponent(SignUpSurName.value);
+    const signUpFirstNameValue = encodeURIComponent(SignUpFirstName.value);
+    const signUpPassValue = encodeURIComponent(SignUpPass.value);
+    console.log(signUpPassValue);
+    fetch(`./src/PHP/signup.php?pseudo=${signUpPseudoValue}&surname=${signUpSurNameValue}&firstname=${signUpFirstNameValue}&password=${signUpPassValue}`)
+
+        .then(response =>
+        {
+            if (!response.ok)
+            {
+                throw new Error('Network failed');
+            }
+            return response.json();
+        })
+
+        .then(data =>
+        {
+            if(data.error === "success")
+            {
+                console.log("Successful connection");
+            }
+            else
+            {
+                console.log("Failed connection");
+            }
+        })
+
+        .catch(error => console.error('Error:', error))
+        .finally(() => console.log('Ceci est exécuté quoi qu\'il arrive.'));
+
+    console.log('Ceci est exécuté directement.');
+});
 
 btnLogin.addEventListener("click", () =>
 {
     const loginPseudoValue = encodeURIComponent(LogInPseudo.value);
     const loginPassValue = encodeURIComponent(LogInPass.value);
-
+    console.log(loginPassValue);
     fetch(`./src/PHP/login.php?pseudo=${loginPseudoValue}&password=${loginPassValue}`)
-        .then(response => {
-            console.log(response);
-            if (!response.ok) {
-                throw new Error('Réponse réseau non OK');
+
+        .then(response =>
+        {
+            if (!response.ok)
+            {
+                throw new Error('Network failed');
             }
             return response.json();
         })
-        .then(data => console.log(data))
-        .catch(error => console.error('Il y a eu un problème avec votre requête fetch:', error))
+
+        .then(data =>
+        {
+            if(data.error === "success")
+            {
+                console.log("Successful connection");
+            }
+            else
+            {
+                console.log("Failed connection");
+            }
+        })
+
+        .catch(error => console.error('Error:', error))
         .finally(() => console.log('Ceci est exécuté quoi qu\'il arrive.'));
 
     console.log('Ceci est exécuté directement.');
@@ -47,15 +99,15 @@ btnSendToSignUp.addEventListener("click", () => {
 
 });
 
-SignUpName.addEventListener("input", () => {
+SignUpPseudo.addEventListener("input", () => {
 
-    LogInPseudo.value = SignUpName.value;
+    LogInPseudo.value = SignUpPseudo.value;
 
 });
 
 LogInPseudo.addEventListener("input", () => {
 
-    SignUpName.value = LogInPseudo.value;
+    SignUpPseudo.value = LogInPseudo.value;
 
 });
 
@@ -95,5 +147,3 @@ allInputs.forEach(input => {
     });
 
 });
-
-

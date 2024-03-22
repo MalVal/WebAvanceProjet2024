@@ -4,10 +4,10 @@
 
     require("./dbFunction.php");
 
-    $pseudo = $_GET['pseudo'];
-    $password = $_GET['password'];
+    $pseudo = htmlentities($_GET['pseudo']);
+    $password = htmlentities($_GET['password']);
 
-    if(check_psw($pseudo, $password))
+    if(pseudo_exist($pseudo) && check_psw($pseudo, $password))
     {
         $response = [
             'error' => 'success'

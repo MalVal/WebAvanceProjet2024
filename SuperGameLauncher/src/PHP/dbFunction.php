@@ -23,10 +23,12 @@
 
     function insert_user($pseudo, $surname, $firstname, $password)
     {
+        //$passwordHash = password_hash($password, PASSWORD_DEFAULT);
+        $passwordHash = $password;
         $db = connect();
         $sql = "INSERT INTO USERS (Pseudo, SurName, FirstName, Password) VALUES (?,?,?,?)";
         $stmt= $db->prepare($sql);
-        $stmt->bind_param("ssss", $pseudo, $surname, $firstname, $password);
+        $stmt->bind_param("ssss", $pseudo, $surname, $firstname, $passwordHash);
         $stmt->execute();
         mysqli_close($db);
     }
@@ -39,7 +41,8 @@
         $data = mysqli_query($db, $sql);
         while($row = mysqli_fetch_array($data, MYSQLI_BOTH))
         {
-            if(password_verify($psw, $row["Password"]) == true)
+            //if(password_verify($psw, $row["Password"]))
+            if($psw === $row["Password"])
             {
                 $valid = 1;
             }

@@ -1,5 +1,5 @@
 /*
-    SuperGAMESDataBase
+    SuperGAMESDataBase Oracle
 */
 
 CREATE TABLE USERS
@@ -7,13 +7,13 @@ CREATE TABLE USERS
 
     Pseudo VARCHAR2(30)
         CONSTRAINT PKusers PRIMARY KEY,
-        
+
     SurName VARCHAR2(30),
-    
+
     FirstName VARCHAR2(30),
-    
+
     Password VARCHAR2(30)
-    
+
 );
 
 CREATE TABLE GAMES
@@ -21,9 +21,9 @@ CREATE TABLE GAMES
 
     Name VARCHAR2(30)
         CONSTRAINT PKGAMESs PRIMARY KEY,
-    
+
     Creator VARCHAR2(30)
-        
+
 );
 
 CREATE TABLE RESULTS
@@ -33,9 +33,9 @@ CREATE TABLE RESULTS
         CONSTRAINT PKresults PRIMARY KEY,
 
     Points NUMBER(3),
-    
+
     DateResult TIMESTAMP,
-    
+
     IdGAMES NUMBER(3)
         CONSTRAINT FKresultsGAMESs REFERENCES GAMES(Name),
 
@@ -58,3 +58,36 @@ VALUES ('2048', 'Richard Lukas');
 
 INSERT INTO GAMES (Name, Creator)
 VALUES ('???', 'Verstringe Ethan');
+
+/*
+    SuperGAMESDataBase MySql
+*/
+
+CREATE TABLE USERS (
+    Pseudo VARCHAR(30) PRIMARY KEY,
+    SurName VARCHAR(30),
+    FirstName VARCHAR(30),
+    Password VARCHAR(30)
+);
+
+CREATE TABLE GAMES (
+    Name VARCHAR(30) PRIMARY KEY,
+    Creator VARCHAR(30)
+);
+
+CREATE TABLE RESULTS (
+     IdResult INT AUTO_INCREMENT PRIMARY KEY,
+     Points INT(3),
+     DateResult TIMESTAMP,
+     IdGAMES INT(3),
+     IdUser VARCHAR(30),
+     FOREIGN KEY (IdGAMES) REFERENCES GAMES(Name),
+     FOREIGN KEY (IdUser) REFERENCES USERS(Pseudo)
+);
+
+INSERT INTO GAMES (Name, Creator)
+VALUES ('BusterGhost', 'Malchair Valentin'),
+('FroggyJump', 'Lecock Simon'),
+('AimTrainer', 'Discart Gauthier'),
+('2048', 'Richard Lukas'),
+('???', 'Verstringe Ethan');
