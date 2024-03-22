@@ -12,7 +12,7 @@ CREATE TABLE USERS
 
     FirstName VARCHAR2(30),
 
-    Password VARCHAR2(30)
+    Password VARCHAR2(100)
 
 );
 
@@ -67,7 +67,7 @@ CREATE TABLE USERS (
     Pseudo VARCHAR(30) PRIMARY KEY,
     SurName VARCHAR(30),
     FirstName VARCHAR(30),
-    Password VARCHAR(30)
+    Password VARCHAR(100)
 );
 
 CREATE TABLE GAMES (

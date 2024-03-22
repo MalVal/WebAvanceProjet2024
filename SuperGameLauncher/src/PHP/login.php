@@ -10,13 +10,13 @@
     if(pseudo_exist($pseudo) && check_psw($pseudo, $password))
     {
         $response = [
-            'error' => 'success'
+            'error' => 'success',
         ];
     }
     else
     {
         $response = [
-            'error' => 'failed'
+            'error' => 'failed',
         ];
     }
 

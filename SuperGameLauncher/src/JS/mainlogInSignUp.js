@@ -21,7 +21,6 @@ btnSignUp.addEventListener("click", () =>
     const signUpSurNameValue = encodeURIComponent(SignUpSurName.value);
     const signUpFirstNameValue = encodeURIComponent(SignUpFirstName.value);
     const signUpPassValue = encodeURIComponent(SignUpPass.value);
-    console.log(signUpPassValue);
     fetch(`./src/PHP/signup.php?pseudo=${signUpPseudoValue}&surname=${signUpSurNameValue}&firstname=${signUpFirstNameValue}&password=${signUpPassValue}`)
 
         .then(response =>
@@ -55,7 +54,6 @@ btnLogin.addEventListener("click", () =>
 {
     const loginPseudoValue = encodeURIComponent(LogInPseudo.value);
     const loginPassValue = encodeURIComponent(LogInPass.value);
-    console.log(loginPassValue);
     fetch(`./src/PHP/login.php?pseudo=${loginPseudoValue}&password=${loginPassValue}`)
 
         .then(response =>
