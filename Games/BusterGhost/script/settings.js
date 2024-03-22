@@ -3,7 +3,7 @@ export const settings = {
         width: 35,
         height: 43,
         maxLife: 150,
-        damage: 15
+        damage: 20
     },
     enemy: {
         width: 35,
@@ -20,6 +20,7 @@ export const settings = {
         disappearance: 10000
     },
     score:{
-        decreasingHeart: 100
+        decreasingHeart: 100,
+        multiplier: 100
     }
 }

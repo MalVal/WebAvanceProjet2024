@@ -235,6 +235,7 @@ export class Game
         this.hearts = []; // Delete all the remain hearts
         this.numberOfEnemies = 0;
         this.numberOfKills = 0;
+        this.score = 0;
         this.wave = 0;
         this.startButton.style.display = "block";
         this.gameStart = false;
@@ -296,7 +297,7 @@ export class Game
                     /*
                         Update of the score
                     */
-                    const scoreIncrease = this.numberOfKills * 100;
+                    const scoreIncrease = this.numberOfKills * settings.score.multiplier;
                     this.score = this.score + scoreIncrease;
                 }
             }
@@ -387,7 +388,7 @@ export class Game
             this.player.zone = false; // The zone don't kill the enemies
             setTimeout(() =>
             {
-                this.player.zone = true; // The zone will kill the enemies after the time out
+                this.player.zone = true; // The zone will kill the enemies after the timeout
             }, 500);
         }
 
@@ -418,17 +419,20 @@ export class Game
         */
         for(let i = 0; i < this.hearts.length; i++)
         {
-            if((!this.notIn(this.player.position.x + this.player.velocity.x, this.player.position.y + this.player.velocity.y, this.player.width, this.player.height, this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height)))
+            if(this.hearts[i]) // If the heart still exists
             {
-                if(this.deleteHeart(this.hearts[i]))
+                if((!this.notIn(this.player.position.x + this.player.velocity.x, this.player.position.y + this.player.velocity.y, this.player.width, this.player.height, this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height)))
                 {
-                    this.player.pointOfLive += settings.heart.health; // Gain life
-                    this.score -= settings.score.decreasingHeart; // Lose score when we take a heart
+                    if(this.deleteHeart(this.hearts[i]))
+                    {
+                        this.player.pointOfLive += settings.heart.health; // Gain life
+                        this.score -= this.numberOfKills * settings.score.decreasingHeart; // Lose score when we take a heart
+                    }
                 }
-            }
-            else
-            {
-                this.hearts[i].update();
+                else
+                {
+                    this.hearts[i].update();
+                }
             }
         }
 
