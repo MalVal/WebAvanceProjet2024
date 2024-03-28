@@ -9,6 +9,8 @@
 
     if(pseudo_exist($pseudo) && check_psw($pseudo, $password))
     {
+        session_start();
+        $_SESSION["pseudo"] = $pseudo;
         $response = [
             'error' => 'success',
         ];
