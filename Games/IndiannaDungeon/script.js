@@ -245,7 +245,7 @@ function animate() {
             player.position.x = 100;
             player.position.y = 100;
             player.pv-=10;
-            console.log("pv:",player.pv);
+            
             if(player.pv<=0)
             {
                 // Niveau réussi
@@ -295,10 +295,10 @@ function animate() {
     if(objetneeded==level)
     {
         // Niveau réussi
-        console.log("Niveau réussi !");
+        
         point+=level;
         level++; // Passer au niveau suivant
-        console.log("Passage au niveau", level);
+        
         // Réinitialiser les objets et les ennemis pour le nouveau niveau
         platforms.length = 0;
         tabennemi.length = 0;
