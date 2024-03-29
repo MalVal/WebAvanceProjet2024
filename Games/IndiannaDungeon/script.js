@@ -1,10 +1,16 @@
 const canvas = document.getElementById('gameCanvas'); // Utilisez getElementById pour obtenir le canvas
 const c = canvas.getContext('2d');
 
+const vieParagraph = document.getElementById('vie');
+const niveauParagraph = document.getElementById('niveau');
+const pointParagraph = document.getElementById('point');
+
+
 // Mettre à jour la taille du canvas lors du chargement de la page
 function resizeCanvas() {
+    const topSpace = 100; // Ajoutez l'espace supplémentaire en haut
     canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
+    canvas.height = window.innerHeight - topSpace; // Soustrayez l'espace supplémentaire en haut
 }
 
 resizeCanvas(); // Appeler la fonction une fois pour définir la taille initiale du canvas
@@ -207,6 +213,8 @@ const platforms = generatePlatforms(5+(level-1));
 const tabennemi = generateEnnemi(platforms);
 const tabattack = generateAttack(tabennemi);
 const tabobj =generateObjet(tabennemi);
+
+
 const keys = {
     right: {
         pressed: false
@@ -245,14 +253,14 @@ function animate() {
             player.position.x = 100;
             player.position.y = 100;
             player.pv-=10;
-            
+            vieParagraph.textContent = 'Vie: '+(player.pv/10); 
             if(player.pv<=0)
             {
                 // Niveau réussi
-                console.log("Niveau RATE LOSER !");
+                niveauParagraph.innerHTML = 'Niveau: 1'; 
                 point=0;
                 level=1; // Passer au niveau suivant
-                console.log("Passage au niveau", level);
+                pointParagraph.textContent = 'Point: ' + point;
                 // Réinitialiser les objets et les ennemis pour le nouveau niveau
                 platforms.length = 0;
                 tabennemi.length = 0;
@@ -266,6 +274,7 @@ function animate() {
                 player.position.x = 100;
                 player.position.y = 100;
                 player.pv = 50;
+                vieParagraph.textContent = 'Vie: 5'; 
             }
             attack.reset(); 
         }
@@ -284,7 +293,6 @@ function animate() {
             {
                 obj.take=1;
                 objetneeded++;
-                console.log("jepasse",level);
             }
             else{
                 obj.draw();
@@ -298,7 +306,8 @@ function animate() {
         
         point+=level;
         level++; // Passer au niveau suivant
-        
+        niveauParagraph.innerHTML = 'Niveau:'+level; 
+        pointParagraph.textContent = 'Point: ' + point;
         // Réinitialiser les objets et les ennemis pour le nouveau niveau
         platforms.length = 0;
         tabennemi.length = 0;
