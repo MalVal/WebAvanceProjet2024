@@ -2,3 +2,10 @@ body{
     margin: 0;
     overflow: hidden; /* Empêche le défilement */
 }
+#gameCanvas {
+    background-image: url('./Image/fonddonjon.jpg'); 
+    background-size: cover; 
+    background-repeat: no-repeat; 
+    background-position: center; 
+
+}
