@@ -438,7 +438,7 @@ if (document.title === "Indianna")
                 player.mouv=1;
                 break;
             case 32:
-                player.velocity.y -= 15; // Donner un coup de saut
+                player.velocity.y -= 20; // Donner un coup de saut
                 break;
             case 68:
                 keys.right.pressed = true;
