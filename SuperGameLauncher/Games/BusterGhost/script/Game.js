@@ -230,6 +230,33 @@ export class Game
     // Reset the game
     resetGame()
     {
+        const scoreValue = encodeURIComponent(this.score);
+        const gameName = 'BusterGhost';
+        fetch(`../../src/PHP/results.php?game=${gameName}&score=${scoreValue}`)
+
+            .then(response =>
+            {
+                if (!response.ok)
+                {
+                    throw new Error('Network failed');
+                }
+                return response.json();
+            })
+
+            .then(data =>
+            {
+                if(data.error === "success")
+                {
+                    console.log("Score successful send");
+                }
+                else
+                {
+                    console.log("Failed send");
+                }
+            })
+
+            .catch(error => console.error('Error:', error))
+
         this.player.reset(); // Reset the variables of the player
         this.enemies = []; // Delete all the remain enemies
         this.hearts = []; // Delete all the remain hearts

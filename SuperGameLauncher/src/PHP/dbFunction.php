@@ -32,6 +32,16 @@
         mysqli_close($db);
     }
 
+    function insert_score($points, $dateResult, $game, $user)
+    {
+        $db = connect();
+        $sql = "INSERT INTO RESULTS (Points, DateResult, IdGames, IdUser) VALUES (?,?,?,?)";
+        $stmt= $db->prepare($sql);
+        $stmt->bind_param("ssss", $points, $dateResult, $game, $user);
+        $stmt->execute();
+        mysqli_close($db);
+    }
+
     function check_psw($pseudo, $psw)
     {
         $valid = 0;

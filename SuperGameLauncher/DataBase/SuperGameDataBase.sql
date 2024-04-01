@@ -62,6 +62,9 @@ VALUES ('???', 'Verstringe Ethan');
 /*
     SuperGAMESDataBase MySql
 */
+DROP TABLE USERS;
+DROP TABLE GAMES;
+DROP TABLE RESULTS;
 
 CREATE TABLE USERS (
     Pseudo VARCHAR(30) PRIMARY KEY,
@@ -79,7 +82,7 @@ CREATE TABLE RESULTS (
      IdResult INT AUTO_INCREMENT PRIMARY KEY,
      Points INT(3),
      DateResult TIMESTAMP,
-     IdGAMES INT(3),
+     IdGAMES VARCHAR(30),
      IdUser VARCHAR(30),
      FOREIGN KEY (IdGAMES) REFERENCES GAMES(Name),
      FOREIGN KEY (IdUser) REFERENCES USERS(Pseudo)
@@ -90,4 +93,4 @@ VALUES ('BusterGhost', 'Malchair Valentin'),
 ('FroggyJump', 'Lecock Simon'),
 ('AimTrainer', 'Discart Gauthier'),
 ('2048', 'Richard Lukas'),
-('???', 'Verstringe Ethan');
+('IndiannaDungeon', 'Verstringe Ethan');
