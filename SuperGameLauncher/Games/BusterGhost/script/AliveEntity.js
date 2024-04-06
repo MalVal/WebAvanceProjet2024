@@ -12,7 +12,7 @@ export class AliveEntity extends Entity
     drawLifeBar()
     {
         // Properties of the life bar
-        let width = 35;
+        let width = this.width;
         let height = 5;
         let color = "green";
 
