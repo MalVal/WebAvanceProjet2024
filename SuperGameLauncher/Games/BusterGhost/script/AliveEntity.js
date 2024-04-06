@@ -33,7 +33,7 @@ export class AliveEntity extends Entity
 
     attack1()
     {
-        if(this.attack.ready === true)
+        if(this.attack.ready === true) // If you can attack
         {
             this.attack.ready = false;
 
