@@ -3,13 +3,14 @@ import { Game } from './Game.js';
 /*
     Html's variables
 */
-const canvasElement = document.querySelector('canvas');
+const canvasElement = document.querySelector("#BusterGhostCanvas");
 
 const startButton = document.getElementById("startButton");
 
 const paragraphPol = document.querySelector("#pol");
 const paragraphNok = document.querySelector("#nok");
 const paragraphScore = document.querySelector("#score");
+const paragraphMessage = document.querySelector("#message");
 
 /*
     Creation of the images
@@ -26,7 +27,7 @@ paths.forEach(path => {
         count++;
         if(count===paths.length){
             // GO !
-            const myGame = new Game(canvasElement, startButton, paragraphPol, paragraphNok, paragraphScore);
+            const myGame = new Game(canvasElement, startButton, paragraphPol, paragraphNok, paragraphScore, paragraphMessage);
         }
     })
 });

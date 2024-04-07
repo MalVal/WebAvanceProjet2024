@@ -5,7 +5,7 @@ import { settings } from './settings.js';
 
 export class Game
 {
-    constructor(canvas, startButton, paragraphPol, paragraphNok, paragraphScore)
+    constructor(canvas, startButton, paragraphPol, paragraphNok, paragraphScore, paragraphMessage)
     {
         this.canvas = canvas;
         this.context = canvas.getContext('2d');
@@ -15,6 +15,7 @@ export class Game
         this.paragraphPol = paragraphPol;
         this.paragraphNok = paragraphNok;
         this.paragraphScore = paragraphScore;
+        this.paragraphMessage = paragraphMessage;
 
         this.numberOfEnemies = 0;
         this.numberOfKills = 0;
@@ -53,6 +54,7 @@ export class Game
         this.startButton.addEventListener("click", () =>
         {
             this.startGame();
+            this.paragraphMessage.textContent = "Good luck !";
         });
 
         //Event for the pressed key
@@ -247,15 +249,15 @@ export class Game
             {
                 if(data.error === "success")
                 {
-                    console.log("Score successful send");
+                    this.paragraphMessage.textContent = "Score successful send";
                 }
                 else
                 {
-                    console.log("Failed send");
+                    this.paragraphMessage.textContent = "Failed send";
                 }
             })
 
-            .catch(error => console.error('Error:', error))
+            .catch(error => this.paragraphMessage.textContent = "Error : " + error)
 
         this.player.reset(); // Reset the variables of the player
         this.enemies = []; // Delete all the remain enemies
@@ -382,7 +384,7 @@ export class Game
                  */
                 for(let i = 0; i < this.hearts.length; i++)
                 {
-                    if(this.hearts[i]) // If the heart still exists
+                    if(this.hearts[i] && this.enemies[i]) // If the heart and the enemy still exists
                     {
                         if ((!this.notIn(this.enemies[i].position.x + this.enemies[i].velocity.x, this.enemies[i].position.y + this.enemies[i].velocity.y, this.enemies[i].width, this.enemies[i].height, this.hearts[i].position.x, this.hearts[i].position.y, this.hearts[i].width, this.hearts[i].height)))
                         {

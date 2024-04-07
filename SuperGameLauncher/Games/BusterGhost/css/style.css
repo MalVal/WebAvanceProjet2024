@@ -1,19 +1,43 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    margin: 0;
-    padding: 0;
+    background-color: #DCEDFF;
+}
+
+header {
+    background-color: #94B0DA;
+    color: #343F3E;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
 }
 
 section {
-    text-align: center;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.CenterSection {
+    justify-content: center;
+}
+
+#BusterGhostCanvas {
+    border: 2px solid #333;
+    background-image: url("../img/background.jpg");
 }
 
 h1 {
@@ -28,14 +52,14 @@ h1 {
 
 #gameData p {
     margin: 5px;
+    font-size: large;
 }
 
-canvas {
-    border: 2px solid #333;
-    background-image: url("../img/background.jpg");
+a {
+    text-decoration: none;
 }
 
-button {
+button, .btn {
     padding: 10px 20px;
     font-size: 1em;
     background-color: #007bff;
@@ -47,6 +71,6 @@ button {
     align-self: center;
 }
 
-button:hover {
+button:hover, .btn:hover {
     background-color: #0056b3;
 }
