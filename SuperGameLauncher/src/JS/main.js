@@ -1,5 +1,3 @@
-let connected = false;
-
 const btnSendToLogIn = document.querySelector("#SignLogIn");
 const btnSendToSignUp = document.querySelector("#LogSignUp");
 const LogIn = document.querySelector(".login");
@@ -19,147 +17,214 @@ const CheckBoxLogIn = document.querySelector("#rememberMelogIn");
 const loginLink = document.querySelector("#showLoginForm");
 const loginForm = document.querySelector("#loginForm")
 const gallery = document.querySelector("#gallery")
+const pHello = document.querySelector("#pHello");
 
-loginLink.addEventListener("click", (evt) => {
+// For the disconnection
+const disconnectForm = document.querySelector("#disconnectForm");
+const btnDisconnect = document.querySelector("#btnDisconnect");
 
-    evt.preventDefault();
-    if(connected === true)
+// Check if the user is connected
+
+let connected;
+
+fetch(`./src/PHP/isConnected.php`)
+
+    .then(response =>
     {
-        loginForm.classList.toggle('hidden');
-        gallery.classList.toggle('blur');
-    }
-
-});
-
-loginForm.addEventListener("click", (evt) => {
-
-    evt.stopPropagation();
-
-});
-
-btnSignUp.addEventListener("click", () =>
-{
-    const signUpPseudoValue = encodeURIComponent(SignUpPseudo.value);
-    const signUpSurNameValue = encodeURIComponent(SignUpSurName.value);
-    const signUpFirstNameValue = encodeURIComponent(SignUpFirstName.value);
-    const signUpPassValue = encodeURIComponent(SignUpPass.value);
-    fetch(`./src/PHP/signup.php?pseudo=${signUpPseudoValue}&surname=${signUpSurNameValue}&firstname=${signUpFirstNameValue}&password=${signUpPassValue}`)
-
-        .then(response =>
+        if (!response.ok)
         {
-            if (!response.ok)
-            {
-                throw new Error('Network failed');
-            }
-            return response.json();
-        })
+            throw new Error('Network failed');
+        }
+        return response.json();
+    })
 
-        .then(data =>
+    .then(data =>
+    {
+        if(data.connected === true)
         {
-            if(data.error === "success")
+            connected = true;
+            pHello.textContent = "Hello " + data.pseudo;
+            loginForm.classList.toggle('hidden');
+            gallery.classList.toggle('blur');
+        }
+        else
+        {
+            connected = false;
+        }
+    })
+
+    .catch(error => console.error('Error:', error))
+
+    .finally(() =>
+    {
+        loginLink.addEventListener("click", (evt) => {
+
+            evt.preventDefault();
+
+            if(connected === true)
             {
-                connected = true;
-                loginForm.classList.toggle('hidden');
+                disconnectForm.classList.toggle('hidden');
                 gallery.classList.toggle('blur');
             }
-            else
-            {
-                console.log("Failed connection");
-            }
-        })
 
-        .catch(error => console.error('Error:', error))
+        });
 
-});
+        loginForm.addEventListener("click", (evt) => {
 
-btnLogin.addEventListener("click", () =>
-{
-    const loginPseudoValue = encodeURIComponent(LogInPseudo.value);
-    const loginPassValue = encodeURIComponent(LogInPass.value);
-    fetch(`./src/PHP/login.php?pseudo=${loginPseudoValue}&password=${loginPassValue}`)
+            evt.stopPropagation();
 
-        .then(response =>
+        });
+
+        btnSignUp.addEventListener("click", () =>
         {
-            if (!response.ok)
-            {
-                throw new Error('Network failed');
-            }
-            return response.json();
-        })
+            const signUpPseudoValue = encodeURIComponent(SignUpPseudo.value);
+            const signUpSurNameValue = encodeURIComponent(SignUpSurName.value);
+            const signUpFirstNameValue = encodeURIComponent(SignUpFirstName.value);
+            const signUpPassValue = encodeURIComponent(SignUpPass.value);
+            fetch(`./src/PHP/signup.php?pseudo=${signUpPseudoValue}&surname=${signUpSurNameValue}&firstname=${signUpFirstNameValue}&password=${signUpPassValue}`)
 
-        .then(data =>
+                .then(response =>
+                {
+                    if (!response.ok)
+                    {
+                        throw new Error('Network failed');
+                    }
+                    return response.json();
+                })
+
+                .then(data =>
+                {
+                    if(data.error === "success")
+                    {
+                        connected = true;
+                        pHello.textContent = "Hello " + SignUpPseudo.value;
+                        loginForm.classList.toggle('hidden');
+                        gallery.classList.toggle('blur');
+                    }
+                    else
+                    {
+                        console.log("Failed connection");
+                    }
+                })
+
+                .catch(error => console.error('Error:', error))
+
+        });
+
+        btnLogin.addEventListener("click", () =>
         {
-            if(data.error === "success")
-            {
-                connected = true;
-                loginForm.classList.toggle('hidden');
-                gallery.classList.toggle('blur');
-            }
-        })
+            const loginPseudoValue = encodeURIComponent(LogInPseudo.value);
+            const loginPassValue = encodeURIComponent(LogInPass.value);
+            fetch(`./src/PHP/login.php?pseudo=${loginPseudoValue}&password=${loginPassValue}`)
 
-        .catch(error => console.error('Error:', error))
+                .then(response =>
+                {
+                    if (!response.ok)
+                    {
+                        throw new Error('Network failed');
+                    }
+                    return response.json();
+                })
 
-});
+                .then(data =>
+                {
+                    if(data.error === "success")
+                    {
+                        connected = true;
+                        pHello.textContent = "Hello " + LogInPseudo.value;
+                        loginForm.classList.toggle('hidden');
+                        gallery.classList.toggle('blur');
+                    }
+                })
 
-btnSendToLogIn.addEventListener("click", () => {
+                .catch(error => console.error('Error:', error))
 
-    $(SignUp).fadeOut();
-    $(LogIn).slideDown();
+        });
 
-});
+        btnDisconnect.addEventListener("click", () => {
+            fetch(`./src/PHP/disconnect.php`)
 
-btnSendToSignUp.addEventListener("click", () => {
+                .then(response =>
+                {
+                    if (!response.ok)
+                    {
+                        throw new Error('Network failed');
+                    }
+                    return response.json();
+                })
 
-    $(LogIn).fadeOut();
-    $(SignUp).slideDown();
+                .then(data =>
+                {
+                    console.log("Disconnected");
+                })
 
-});
+                .catch(error => console.error('Error:', error))
 
-SignUpPseudo.addEventListener("input", () => {
+                .finally(() =>{
+                    window.location.reload();
+                })
+        });
 
-    LogInPseudo.value = SignUpPseudo.value;
+        btnSendToLogIn.addEventListener("click", () => {
 
-});
+            $(SignUp).fadeOut();
+            $(LogIn).slideDown();
 
-LogInPseudo.addEventListener("input", () => {
+        });
 
-    SignUpPseudo.value = LogInPseudo.value;
+        btnSendToSignUp.addEventListener("click", () => {
 
-});
+            $(LogIn).fadeOut();
+            $(SignUp).slideDown();
 
-SignUpPass.addEventListener("input", () => {
+        });
 
-    LogInPass.value = SignUpPass.value;
+        SignUpPseudo.addEventListener("input", () => {
 
-});
+            LogInPseudo.value = SignUpPseudo.value;
 
-LogInPass.addEventListener("input", () => {
+        });
 
-    SignUpPass.value = LogInPass.value;
+        LogInPseudo.addEventListener("input", () => {
 
-});
+            SignUpPseudo.value = LogInPseudo.value;
 
-CheckBoxLogIn.addEventListener("change", () => {
+        });
 
-    CheckBoxSignUp.checked = CheckBoxLogIn.checked;
+        SignUpPass.addEventListener("input", () => {
 
-});
+            LogInPass.value = SignUpPass.value;
 
-CheckBoxSignUp.addEventListener("change", () => {
+        });
 
-    CheckBoxLogIn.checked = CheckBoxSignUp.checked;
+        LogInPass.addEventListener("input", () => {
 
-});
+            SignUpPass.value = LogInPass.value;
+
+        });
+
+        CheckBoxLogIn.addEventListener("change", () => {
+
+            CheckBoxSignUp.checked = CheckBoxLogIn.checked;
+
+        });
+
+        CheckBoxSignUp.addEventListener("change", () => {
+
+            CheckBoxLogIn.checked = CheckBoxSignUp.checked;
+
+        });
 
 
-const allInputs = document.querySelectorAll(".input");
+        const allInputs = document.querySelectorAll(".input");
 
-allInputs.forEach(input => {
+        allInputs.forEach(input => {
 
-    input.addEventListener("click", function () {
+            input.addEventListener("click", function () {
 
-        this.select();
+                this.select();
 
-    });
+            });
 
-});
+        });
+    })

@@ -78,7 +78,7 @@ body {
 }
 
 /* Styles spécifiques à l'animation */
-.signup, .login {
+.signup, .login, .disconnect {
     position: absolute;
     background-color: #fff;
     padding: 20px;
