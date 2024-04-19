@@ -17,9 +17,18 @@
     }
     else
     {
-        $response = [
-            'error' => 'failed',
-        ];
+        if(!pseudo_exist($pseudo))
+        {
+            $response = [
+                'error' => 'The pseudo doesn\'t exists !',
+            ];
+        }
+        else
+        {
+            $response = [
+                'error' => 'Bad password !',
+            ];
+        }
     }
 
     echo json_encode($response);

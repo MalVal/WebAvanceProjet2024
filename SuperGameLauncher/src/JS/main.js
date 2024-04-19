@@ -13,6 +13,8 @@ const LogInPseudo = document.querySelector("#LogInPseudo");
 const LogInPass = document.querySelector("#loginPass");
 const CheckBoxSignUp = document.querySelector("#rememberMesignUp");
 const CheckBoxLogIn = document.querySelector("#rememberMelogIn");
+const signUpError = document.querySelector("#signupError");
+const loginError = document.querySelector("#loginError");
 
 const loginLink = document.querySelector("#showLoginForm");
 const loginForm = document.querySelector("#loginForm")
@@ -81,6 +83,25 @@ fetch(`./src/PHP/isConnected.php`)
             const signUpSurNameValue = encodeURIComponent(SignUpSurName.value);
             const signUpFirstNameValue = encodeURIComponent(SignUpFirstName.value);
             const signUpPassValue = encodeURIComponent(SignUpPass.value);
+
+            if(signUpPseudoValue === "")
+            {
+                signUpError.textContent = "The pseudo can't be empty !";
+                return;
+            }
+
+            if(!checkCharOnly(signUpSurNameValue) || !checkCharOnly(signUpFirstNameValue))
+            {
+                signUpError.textContent = "The name and the firstname can't contain numbers or can't be empty !";
+                return;
+            }
+
+            if(signUpPassValue === "")
+            {
+                signUpError.textContent = "The password can't be empty !";
+                return;
+            }
+
             fetch(`./src/PHP/signup.php?pseudo=${signUpPseudoValue}&surname=${signUpSurNameValue}&firstname=${signUpFirstNameValue}&password=${signUpPassValue}`)
 
                 .then(response =>
@@ -103,7 +124,7 @@ fetch(`./src/PHP/isConnected.php`)
                     }
                     else
                     {
-                        console.log("Failed connection");
+                        signUpError.textContent = "The pseudo already exists !";
                     }
                 })
 
@@ -134,6 +155,10 @@ fetch(`./src/PHP/isConnected.php`)
                         pHello.textContent = "Hello " + LogInPseudo.value;
                         loginForm.classList.toggle('hidden');
                         gallery.classList.toggle('blur');
+                    }
+                    else
+                    {
+                        loginError.textContent = data.error;
                     }
                 })
 
@@ -228,3 +253,9 @@ fetch(`./src/PHP/isConnected.php`)
 
         });
     })
+
+function checkCharOnly(name)
+{
+    const nameRegex = /^[a-zA-Z]+$/;
+    return nameRegex.test(name);
+}

@@ -93,3 +93,8 @@ main {
     width: 75%;
     border-radius: 50%;
 }
+
+.error
+{
+    color: red;
+}
