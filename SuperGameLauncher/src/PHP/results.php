@@ -11,7 +11,7 @@
 
     if(isset($_SESSION["pseudo"]))
     {
-        insert_score($score, time(), $game, $_SESSION["pseudo"]);
+        insert_score($score, $game, $_SESSION["pseudo"]);
         $response = [
             'error' => 'success',
         ];

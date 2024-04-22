@@ -32,13 +32,14 @@
         mysqli_close($db);
     }
 
-    function insert_score($points, $dateResult, $game, $user)
+    function insert_score($points, $game, $user)
     {
         $db = connect();
-        $sql = "INSERT INTO RESULTS (Points, DateResult, IdGames, IdUser) VALUES (?,?,?,?)";
+        $sql = "INSERT INTO RESULTS (Points, DateResult, IdGames, IdUser) VALUES (?, NOW(), ?, ?)";
         $stmt= $db->prepare($sql);
-        $stmt->bind_param("ssss", $points, $dateResult, $game, $user);
+        $stmt->bind_param("sss", $points, $game, $user);
         $stmt->execute();
+        $stmt->close();
         mysqli_close($db);
     }
 
