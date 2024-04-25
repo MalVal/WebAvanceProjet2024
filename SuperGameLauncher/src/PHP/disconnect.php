@@ -2,6 +2,7 @@
 
     header('Content-Type: application/json');
 
+    // Disconnect the user and destroy the session
     session_start();
 
     session_unset();

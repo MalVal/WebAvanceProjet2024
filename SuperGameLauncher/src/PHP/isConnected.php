@@ -4,6 +4,7 @@
 
     session_start();
 
+    // Check if a user is connected - if $_SESSION["pseudo"] exists
     if(isset($_SESSION["pseudo"]))
     {
         $response = [

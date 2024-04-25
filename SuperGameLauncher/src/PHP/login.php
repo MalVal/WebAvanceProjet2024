@@ -7,6 +7,7 @@
     $pseudo = htmlentities($_GET['pseudo']);
     $password = htmlentities($_GET['password']);
 
+    // Check if the pseudo is a real user and if the password is correct
     if(pseudo_exist($pseudo) && check_psw($pseudo, $password))
     {
         session_start();

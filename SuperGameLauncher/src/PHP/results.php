@@ -9,6 +9,7 @@
 
     session_start();
 
+    // Write in the database the score send by the user
     if(isset($_SESSION["pseudo"]))
     {
         insert_score($score, $game, $_SESSION["pseudo"]);

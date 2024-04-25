@@ -59,6 +59,7 @@ fetch(`./src/PHP/isConnected.php`)
 
     .finally(() =>
     {
+        // Display the disconnection menu
         loginLink.addEventListener("click", (evt) => {
 
             evt.preventDefault();
@@ -77,6 +78,7 @@ fetch(`./src/PHP/isConnected.php`)
 
         });
 
+        // The button to create a new user
         btnSignUp.addEventListener("click", () =>
         {
             const signUpPseudoValue = encodeURIComponent(SignUpPseudo.value);
@@ -132,6 +134,7 @@ fetch(`./src/PHP/isConnected.php`)
 
         });
 
+        // The button to connect a user already created
         btnLogin.addEventListener("click", () =>
         {
             const loginPseudoValue = encodeURIComponent(LogInPseudo.value);
@@ -166,6 +169,7 @@ fetch(`./src/PHP/isConnected.php`)
 
         });
 
+        // The button to disconnect a user
         btnDisconnect.addEventListener("click", () => {
             fetch(`./src/PHP/disconnect.php`)
 
@@ -190,6 +194,7 @@ fetch(`./src/PHP/isConnected.php`)
                 })
         });
 
+        // Display the login menu
         btnSendToLogIn.addEventListener("click", () => {
 
             $(SignUp).fadeOut();
@@ -197,6 +202,7 @@ fetch(`./src/PHP/isConnected.php`)
 
         });
 
+        // Display the signup menu
         btnSendToSignUp.addEventListener("click", () => {
 
             $(LogIn).fadeOut();
@@ -254,6 +260,7 @@ fetch(`./src/PHP/isConnected.php`)
         });
     })
 
+// A function to verify if a string contains only characters
 function checkCharOnly(name)
 {
     const nameRegex = /^[a-zA-Z]+$/;
