@@ -48,11 +48,27 @@ main {
 
 .column {
     margin: 0 10px;
+    width: 240px;
+    text-align: center;
+}
+
+.game img {
+    width: 100%;
+    height: auto;
+    border-radius: 10px;
 }
 
 .column a {
     display: block;
     margin-bottom: 10px;
+}
+
+.game-name {
+    display: block;
+    margin-top: 5px;
+    font-size: 14px;
+    color: #4C5C65;
+    font-family: "Fantasy", serif;
 }
 
 .gallery img {
@@ -97,4 +113,43 @@ main {
 .error
 {
     color: red;
+}
+
+
+
+table {
+    margin-top: 20px;
+    width: 100%;
+    max-width: 300px;
+    height: auto;
+    border-collapse: collapse;
+}
+
+
+table th,
+table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: left;
+}
+
+table th {
+    background-color: #313B3A;
+    color: ghostwhite;
+}
+
+table tr:nth-of-type(1) {
+    background-color: gold;
+}
+
+table tr:nth-of-type(2) {
+    background-color: silver;
+}
+
+table tr:nth-of-type(3) {
+    background-color: chocolate;
+}
+
+table tr {
+    background-color: ghostwhite;
 }

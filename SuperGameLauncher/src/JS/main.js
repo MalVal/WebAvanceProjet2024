@@ -11,8 +11,6 @@ const SignUpFirstName = document.querySelector("#signupFirstName");
 const SignUpPass = document.querySelector("#signupPass");
 const LogInPseudo = document.querySelector("#LogInPseudo");
 const LogInPass = document.querySelector("#loginPass");
-const CheckBoxSignUp = document.querySelector("#rememberMesignUp");
-const CheckBoxLogIn = document.querySelector("#rememberMelogIn");
 const signUpError = document.querySelector("#signupError");
 const loginError = document.querySelector("#loginError");
 
@@ -234,19 +232,6 @@ fetch(`./src/PHP/isConnected.php`)
 
         });
 
-        CheckBoxLogIn.addEventListener("change", () => {
-
-            CheckBoxSignUp.checked = CheckBoxLogIn.checked;
-
-        });
-
-        CheckBoxSignUp.addEventListener("change", () => {
-
-            CheckBoxLogIn.checked = CheckBoxSignUp.checked;
-
-        });
-
-
         const allInputs = document.querySelectorAll(".input");
 
         allInputs.forEach(input => {
@@ -266,3 +251,62 @@ function checkCharOnly(name)
     const nameRegex = /^[a-zA-Z]+$/;
     return nameRegex.test(name);
 }
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    var gifBusterGhost = "./Image/BusterGhost.gif";
+    var gif2048 = "./Image/2048.gif";
+    var gifIndiannaDungeon = "./Image/IndiannaDungeon.gif";
+    var gifBagger288 = "./Image/Bagger288.gif";
+    var gifAimTrainer = "./Image/AimTrainer.gif";
+
+    var busterGhostImg = document.querySelectorAll(".game img.BusterGhost");
+    busterGhostImg.forEach(function(img) {
+        img.addEventListener("mouseover", function() {
+            this.src = gifBusterGhost;
+        });
+        img.addEventListener("mouseout", function() {
+            this.src = this.dataset.originalSrc;
+        });
+    });
+
+    var img2048 = document.querySelectorAll(".game img.Lu2048");
+    img2048.forEach(function(img) {
+        img.addEventListener("mouseover", function() {
+            this.src = gif2048;
+        });
+        img.addEventListener("mouseout", function() {
+            this.src = this.dataset.originalSrc;
+        });
+    });
+
+    var indiannaDungeonImg = document.querySelectorAll(".game img.IndiannaDungeon");
+    indiannaDungeonImg.forEach(function(img) {
+        img.addEventListener("mouseover", function() {
+            this.src = gifIndiannaDungeon;
+        });
+        img.addEventListener("mouseout", function() {
+            this.src = this.dataset.originalSrc;
+        });
+    });
+
+    var bagger288Img = document.querySelectorAll(".game img.Bagger288");
+    bagger288Img.forEach(function(img) {
+        img.addEventListener("mouseover", function() {
+            this.src = gifBagger288;
+        });
+        img.addEventListener("mouseout", function() {
+            this.src = this.dataset.originalSrc;
+        });
+    });
+
+    var aimTrainerImg = document.querySelectorAll(".game img.AimTrainer");
+    aimTrainerImg.forEach(function(img) {
+        img.addEventListener("mouseover", function() {
+            this.src = gifAimTrainer;
+        });
+        img.addEventListener("mouseout", function() {
+            this.src = this.dataset.originalSrc;
+        });
+    });
+});

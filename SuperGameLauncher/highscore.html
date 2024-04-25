@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>SuperGameLauncher</title>
+    <link rel="stylesheet" href="src/CSS/stylelogInSignUp.css">
+    <link rel="stylesheet" href="src/CSS/style.css">
+
+    <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./src/JS/main.js"></script>
+    <script defer src="./src/JS/highscore.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <a href="./index.html"><img src="./Image/SuperGameLauncher.png" alt="SuperGameLauncher" id="SuperGameLauncher"></a>
+    </div>
+    <div>
+        <p id="pHello"></p>
+    </div>
+    <div class="head">
+        <a href="#" id="showLoginForm"><img src="./Image/Unknow.png" alt="UnknowLog" id="Unknow"></a>
+    </div>
+
+</header>
+
+<main>
+    <div id="highscores"></div>
+    <div id="gallery" class="blur gallery">
+        <div class="row">
+            <div class="column">
+                <!--<div class="game">
+                    <a href="./Games/BusterGhost/BusterGhost.html"><img src="./Image/BusterGhost.png" alt="BusterGhost"></a>
+                </div>-->
+                <div id="BusterGhost-highscore">
+                    <table id="BusterGhost-table">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td class="pseudo">Gauthier</td>
+                            <td class="score">4242</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td class="pseudo">ILLIT</td>
+                            <td class="score">699</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td class="pseudo">New Jeans</td>
+                            <td class="score">69</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td class="pseudo">DreamCatcher</td>
+                            <td class="score">42</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td class="pseudo">Jung Kook</td>
+                            <td class="score">9</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <span class="game-name">BusterGhost</span>
+            </div>
+            <div class="column">
+                <!--<div class="game">
+                    <a href="./Games/2048/2048.html"><img src="./Image/2048.png" alt="2048"></a>
+                </div>-->
+                <div id="2048-highscore">
+                    <table id="2048-table">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ADO</td>
+                            <td>4242</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ILLIT</td>
+                            <td>699</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>New Jeans</td>
+                            <td>69</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>DreamCatcher</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Jung Kook</td>
+                            <td>9</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <span class="game-name">2048</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <!--<div class="game">
+                    <a href="./Games/IndiannaDungeon/index.html"><img src="./Image/IndiannaDungeon.png" alt="IndiannaDungeon"></a>
+                </div>-->
+                <div id="IndiannaDungeon-highscore">
+                    <table id="IndiannaDungeon-table">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ADO</td>
+                            <td>4242</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ILLIT</td>
+                            <td>699</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>New Jeans</td>
+                            <td>69</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>DreamCatcher</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Jung Kook</td>
+                            <td>9</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <span class="game-name">IndiannaDungeon</span>
+            </div>
+            <div class="column">
+                <!--<div class="game">
+                    <a href="#"><img src="./Image/Bagger288.jpg" alt="Bagger288"></a>
+                </div>-->
+                <div id="Bagger288-highscore">
+                    <table id="Bagger288-table">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ADO</td>
+                            <td>4242</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ILLIT</td>
+                            <td>699</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>New Jeans</td>
+                            <td>69</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>DreamCatcher</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Jung Kook</td>
+                            <td>9</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <span class="game-name">Bagger288</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="column">
+                <!--<div class="game">
+                    <a href="./Games/AimTrainer/index.html"><img src="./Image/AimTrainer.jpg" alt="AimTrainer"></a>
+                </div>-->
+                <div id="AimTrainer-highscore">
+                    <table id="AimTrainer-table">
+                        <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Name</th>
+                            <th>Score</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>ADO</td>
+                            <td>4242</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>ILLIT</td>
+                            <td>699</td>
+                        </tr>
+                        <tr>
+                            <td>3</td>
+                            <td>New Jeans</td>
+                            <td>69</td>
+                        </tr>
+                        <tr>
+                            <td>4</td>
+                            <td>DreamCatcher</td>
+                            <td>42</td>
+                        </tr>
+                        <tr>
+                            <td>5</td>
+                            <td>Jung Kook</td>
+                            <td>9</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <span class="game-name">AimTrainer</span>
+            </div>
+        </div>
+    </div>
+
+    <a href="index.html"><button id="btnHighScore" class="highscore-btn">Hide HighScore</button></a>
+
+
+    <div id="disconnectForm" class="disconnect hidden">
+        <div class="center">
+            <h2 class="form-title">Disconnect</h2>
+            <div class="form-holder">
+                <p>You are already connected !</p>
+            </div>
+            <button id="btnDisconnect" class="submit-btn">Disconnect</button>
+        </div>
+    </div>
+
+    <div id="loginForm" class="form-structor">
+        <div class="signup hidden">
+            <h2 class="form-title" id="signup">Sign up</h2>
+            <div class="form-holder">
+                <input type="text" id="signupPseudo" class="input" placeholder="Pseudo" />
+                <input type="text" id="signupSurName" class="input" placeholder="Surname" />
+                <input type="text" id="signupFirstName" class="input" placeholder="Firstname" />
+                <input type="password" id="signupPass" class="input" placeholder="Password" />
+                <p class="error" id="signupError"></p>
+            </div>
+            <button id="btnSignUp" class="submit-btn">Sign up</button>
+            <div class="buttons-container">
+                <button id="SignLogIn" class="sendTo-btn">Log in</button>
+            </div>
+        </div>
+        <div class="login">
+            <div class="center">
+                <h2 class="form-title" id="login">Log in</h2>
+                <div class="form-holder">
+                    <input type="text" id="LogInPseudo" class="input" placeholder="Pseudo" />
+                    <input type="password" id="loginPass" class="input" placeholder="Password" />
+                    <p class="error" id="loginError"></p>
+                </div>
+                <button id="btnLogin" class="submit-btn">Log in</button>
+                <div class="buttons-container">
+                    <button id="LogSignUp" class="sendTo-btn">Sign up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</main>
+</body>
+</html>
