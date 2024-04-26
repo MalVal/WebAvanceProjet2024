@@ -1,24 +1,15 @@
 fetch(`./src/PHP/highscore.php?game='BusterGhost'`)
-
-    .then(response =>
-    {
-        if (!response.ok)
-        {
+    .then(response => {
+        if (!response.ok) {
             throw new Error('Network failed');
         }
         return response.json();
     })
-
-    .then(data =>
-    {
-        let j = 1;
-        for(let i in data)
-        {
-            tab = document.querySelector("#BusterGhost-table tr:nth-of-type(${j})");
-            tab.querySelector('.pseudo').textContent = data[i].pseudo;
-            tab.querySelector('.score').textContent = data[i].Points;
-            j++;
-        }
+    .then(data => {
+        data.forEach((item, index) => {
+            const row = document.querySelector(`#BusterGhost-table tbody tr:nth-of-type(${index + 1})`);
+            row.querySelector('.pseudo').textContent = item.pseudo;
+            row.querySelector('.score').textContent = item.Points;
+        });
     })
-
-    .catch(error => console.error('Error:', error))
+    .catch(error => console.error('Error:', error));

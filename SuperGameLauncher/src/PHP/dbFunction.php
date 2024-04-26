@@ -61,19 +61,20 @@
         return $valid;
     }
 
-    function getHighScore($game)
-    {
-        $db = connect();
-        $sql = "SELECT pseudo, Points FROM RESULTS R
+function getHighScore($game)
+{
+    $db = connect();
+    $sql = "SELECT pseudo, Points FROM RESULTS R
         INNER JOIN USERS U ON R.IdUser = U.pseudo
         INNER JOIN GAMES G ON R.IdGAMES = '$game' 
+        GROUP BY IdResult
         ORDER BY Points DESC
         LIMIT 5;";
-        $data = mysqli_query($db, $sql);
-        $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
-        mysqli_free_result($data);
-        mysqli_close($db);
-        return $result;
-    }
+    $data = mysqli_query($db, $sql);
+    $result = mysqli_fetch_all($data, MYSQLI_ASSOC);
+    mysqli_free_result($data);
+    mysqli_close($db);
+    return $result;
+}
 
 ?>
