@@ -1,6 +1,6 @@
 import { AliveEntity } from "./AliveEntity.js";
 import { images } from './main.js';
-import {settings} from "./settings";
+import {settings} from "./settings.js";
 
 export class Enemy extends AliveEntity
 {
