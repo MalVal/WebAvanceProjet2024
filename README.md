@@ -10,22 +10,22 @@ Bienvenue dans notre projet de fin d'année en programmation web avancée 2024. 
       <img src="./SuperGameLauncher/Image/BusterGhost.gif" width="200" style="border-radius: 5px;">
 
 2. **IndiannaDungeon** - Un autre jeu palpitant créé par Ethan VERSTRINGE.
-   - Repository : [JeuEthan](lien_vers_le_repo)
+   - Repository : [IndiannaDungeon](/SuperGameLauncher/Games/IndiannaDungeon/)
 
    <img src="./SuperGameLauncher/Image/IndiannaDungeon.gif" width="200" style="border-radius: 5px;">
 
 3. **2048** - Une version web du célèbre jeu de puzzle, développée par Lukas RICHARD.
-   - Repository : [2048](lien_vers_le_repo)
+   - Repository : [2048](/SuperGameLauncher/Games/2048/)
 
    <img src="./SuperGameLauncher/Image/2048.gif" width="200" style="border-radius: 5px;">
 
 4. **Froggy Jump** - Un jeu amusant mettant en vedette les talents de Simon LECOCK.
-   - Repository : [FroggyJump](lien_vers_le_repo)
+   - Repository : [FroggyJump](/SuperGameLauncher/Image/Bagger288.jpg)
 
    <img src="./SuperGameLauncher/Image/Bagger288.gif" width="200" style="border-radius: 5px;">
 
 
 5. **Aim Trainer** - Développé par Gauthier DISCART, un jeu pour améliorer votre précision de tir.
-   - Repository : [AimTrainer](lien_vers_le_repo)
+   - Repository : [AimTrainer](/SuperGameLauncher/Games/AimTrainer/)
 
    <img src="./SuperGameLauncher/Image/AimTrainer.gif" width="200" style="border-radius: 5px;">
