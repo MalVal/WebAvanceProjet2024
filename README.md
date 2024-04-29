@@ -5,7 +5,7 @@ Bienvenue dans notre projet de fin d'année en programmation web avancée 2024. 
 ## Jeux développés :
 
 1. **BusterGhost** - Un jeu passionnant développé par Valentin MALCHAIR.
-   - Repository : [BusterGhost](https://github.com/MalVal/WebAvanceProjet2024/tree/main/Games/BusterGhost)
+   - Repository : [BusterGhost](/SuperGameLauncher/Games/BusterGhost/)
 
       <img src="./SuperGameLauncher/Image/BusterGhost.gif" width="200" style="border-radius: 5px;">
 
