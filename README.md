@@ -7,7 +7,7 @@ Bienvenue dans notre projet de fin d'année en programmation web avancée 2024. 
 1. **Jeu de Valentin** - Un jeu passionnant développé par Valentin MALCHAIR.
    - Repository : [BusterGhost](https://github.com/MalVal/WebAvanceProjet2024/tree/main/Games/BusterGhost)
 
-      <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExaTdlbjJ2azV5eWI2c2p5dG1zbG5vN2VwZHNlZGFzaG56ZTlnY3BwayZlcD12MV9naWZzX3NlYXJjaCZjdD1n/xT8qB72Dfmxd8nv9DO/giphy.gif" width="200" style="border-radius: 5px;">
+      <img src="./SuperGameLauncher/Image/BusterGhost.gif" width="200" style="border-radius: 5px;">
 
 2. **Jeu d'Ethan** - Un autre jeu palpitant créé par Ethan VERSTRINGE.
    - Repository : [JeuEthan](lien_vers_le_repo)
