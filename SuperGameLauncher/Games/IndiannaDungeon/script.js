@@ -1,5 +1,3 @@
-let point=0;
-
 if (document.title === "Indianna")
 {
     const canvas = document.getElementById('gameCanvas'); // Utilisez getElementById pour obtenir le canvas
@@ -23,7 +21,7 @@ if (document.title === "Indianna")
 
     const gravity = 0.5;
     let level=1;
-
+    let point=level;
     
 
     class Player {
@@ -307,9 +305,35 @@ if (document.title === "Indianna")
                 vieParagraph.textContent = 'Vie: '+(player.pv/10); 
                 if(player.pv<=0)
                 {
+                    const gamename ="indiannadungeon";
+                    fetch(`../../src/PHP/results.php?game=${gamename}&score=${point}`)
+
+                        .then(response =>
+                        {
+                            if (!response.ok)
+                            {
+                                throw new Error('Network failed');
+                            }
+                            return response.json();
+                        })
+
+                        .then(data =>
+                        {
+                            if(data.error === "success")
+                            {
+                                this.paragraphMessage.textContent = "Score successful send";
+                            }
+                            else
+                            {
+                                this.paragraphMessage.textContent = "Failed send";
+                            }
+                        })
+
+                        .catch(error => this.paragraphMessage.textContent = "Error : " + error)
                     // Niveau raté
                     niveauParagraph.innerHTML = 'Niveau: 1'; 
                     level=1; 
+                    point=0;
                     pointParagraph.textContent = 'Point: ' + point;
                     // Réinitialiser les objets et les ennemis pour le nouveau niveau
                     platforms.length = 0;
