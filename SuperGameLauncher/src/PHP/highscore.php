@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 require("./dbFunction.php");
 
-$requestResults = getHighScore("BusterGhost");
+$requestResults = getHighScore($_GET["game"]);
 
 $response = [];
 for ($i = 0; $i < 5; $i++) {
