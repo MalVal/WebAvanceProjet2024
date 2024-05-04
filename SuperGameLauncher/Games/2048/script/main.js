@@ -1,10 +1,14 @@
-import { Tableau2048 } from "./tableau2048";
+import { Game2048 } from "./game2048.js";
+import { settings } from "./settings.js";
+
+const startButton = document.getElementById(settings.start);
+const Time = document.getElementById(settings.time);
+const tableGame = document.getElementById(settings.tableGame);
+const penality = document.getElementById(settings.penality);
+const pTime = document.getElementById(settings.pTime);
+const paragraphMessage = document.querySelector(settings.pMessage);
 
 window.onload = function()
 {
-    setGame();
-}
-function setGame()
-{
-    const Jeu2048 = new Tableau2048();
+    const myGame2048 = new Game2048(tableGame, startButton, Time, penality, pTime, paragraphMessage);
 }

@@ -1,5 +1,10 @@
 export const settings = {
-    taille : 4,
-    valeurCase : 0, 
-    score : "score"
+    size : 4,
+    valueCase : 0, 
+    time : "time",
+    start : "startButton",
+    tableGame : "table",
+    penality : "penality",
+    pTime : "pTime",
+    pMessage : "#message"
 }

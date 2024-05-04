@@ -1,17 +1,52 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="./css/style.css">
-    <script type="module" src="./script/main.js" defer></script>
-    <title>2048</title>
-</head>
-<body>
-    <h1>2048</h1>
-    <p>Score : <span id="score">0</span></p>
-    <p>Meilleur score : <span id="bestScore">0</span></p>
 
-    <div id="tableau"></div>
-</body>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./css/style.css">
+        <script type="module" src="./script/main.js" defer></script>
+        <title>2048</title>
+    </head>
+
+    <body>
+
+        <header>
+            <h1>2048</h1>
+            <a href="../../index.html" class="btn">Back</a>      
+        </header>
+
+        <section class="CenterSection">
+            <p id="message"></p>
+        </section>
+
+        <section id ="gameData">
+            <p>Time (in seconds) : <span id="time">0</span></p>
+            <p id="penality">(+ 10)</p>
+        </section>
+
+        <section class="CenterSection">
+            <button id="startButton">Start</button>
+        </section>
+
+        <main>
+            <div id="table">
+                <h2>Rules of the game :</h2>
+                <ol>
+                    <li><p>The grid: The game takes place on a grid of 4x4 squares.</p></li>
+                    <li><p>Numbered tiles: At the start, two numbered tiles, usually with the value 2, appear randomly on the grid. The objective is to merge these tiles to reach the value 2048.</p></li>
+                    <li><p>Movements: You can move all the tiles on the grid in four directions (with the arrows): up, down, left and right. When you make a move, all tiles move in that direction as much as possible, grouping together if they have the same value.</p></li>
+                    <li><p>The goal: The main objective is to reach a tile with a value of 2048 in the shortest possible time. The game ends when you reach this goal</p></li>
+                    <li><p>The strategy: To succeed, you must plan your movements so as to group tiles of the same value and avoid blocking the grid. Anticipate future moves and try to keep the grid as free as possible so you can continue merging tiles.</p></li>
+                    <li><p>Tip: at any time or if the grid is blocked because all the squares are filled and you can no longer make any moves, press the space bar to randomly re-select the squares on the board. This will have the effect of removing the smallest box from the table to replace it with a random value and you will have 10 seconds of penalties which will be added to your time</p></li>
+                    <li><p>Red cross: if you have a cross that appears on the game, this square is made to annoy you and take up a square. To make it disappear, simply merge it with another cross</p></li>
+                    <li><p>New squares on the board: when you manage to merge 2 squares, a random square appears. There is an 80% chance that the box is a 2, 12% that the box is a 4, 6% that the box is a 1 and 2% that the box is a red cross</p></li>
+                    <li><p>Good game !</p></li>
+                </ol>
+            </div>
+        </main>
+
+    </body>
+
 </html>

@@ -1,28 +1,58 @@
 
-body
-{
-    text-align: center;
-    background-color: rgb(218, 167, 125);
-    font-family: "Clear Sans", "Helvetica Neue", Arial, sans-serif;
+* {
+    margin: 0;
+    padding: 0;
 }
 
-#tableau
+body
 {
-    width: 400px;
-    height: 400px;
+    font-family: Arial, sans-serif;
+    background-color: #DCEDFF;
+}
+
+header {
+    background-color: #94B0DA;
+    color: #343F3E;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.CenterSection {
+    justify-content: center;
+}
+
+#table
+{
+    width: 550px;
+    height: 550px;
     background-color: rgb(211, 203, 203);
     border: 6px solid rgb(100, 94, 94);
-    margin: 0 auto;
+    margin: auto;
     display:flex;
     flex-wrap:wrap;
 }
 
 .case
 {
-    width: 90px;
-    height: 90px;
+    width: 128px;
+    height: 128px;
     border: 5px solid rgb(100, 94, 94);
-    font-size: 50px;
+    font-size: 55px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -30,67 +60,126 @@ body
     color:white;
 }
 
-.valeur2
+h1 {
+    color: #333;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+#gameData {
+    margin-bottom: 20px;
+}
+
+#gameData p {
+    margin: 5px;
+    font-size: large;
+}
+
+a {
+    text-decoration: none;
+}
+
+ol{
+    list-style-type: disc;
+}
+
+li{
+    margin-bottom: 7px;
+}
+
+#penality
+{
+    color: red;
+    font-weight: bold;
+    display: none;
+}
+
+
+button, .btn
+{
+    padding: 10px 20px;
+    font-size: 1em;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center
+}
+
+button, .btn:hover
+{
+    background-color: #0056b3;
+}
+
+.value5{
+    /*image de la bombe comme arrière-plan*/
+    background-image: url('../img/RedCross.jpg');
+    /* Régler la taille de l'image */
+    background-size: cover;
+    /* Centrer l'image horizontalement et verticalement dans la case */
+    background-position: center;
+    /*texte masqué pour voir l'image */
+    color: transparent;
+}
+
+.value1
+{
+    background-color: #510103;
+}
+
+.value2
 {
     background-color: #F80C12;
 }
 
-.valeur4
+.value4
 {
     background-color: #FF5500;
 }
 
-.valeur8
+.value8
 {
     background-color: #FF8F00;
 }
 
-.valeur16
+.value16
 {
     background-color: #FEF842;
 }
 
-.valeur32
+.value32
 {
     background-color: #119E00;
 }
 
-.valeur64
+.value64
 {
     background-color: #77BB00;
 }
 
-.valeur128
+.value128
 {
     background-color: #7AE380;
 }
 
-.valeur256
+.value256
 {
     background-color: #0CE3FF;
 }
 
-.valeur512
+.value512
 {
     background-color: #00AAEE;
 }
 
-.valeur1024
+.value1024
 {
     background-color: #3B0CBD;
 }
 
-.valeur2048
+.value2048
 {
     background-color: #980FB7;
-}
-
-.valeur4096
-{
-    background-color: #D223FE;
-}
-
-.valeur8192
-{
-    background-color: #FF7AAF;
 }

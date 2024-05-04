@@ -1,14 +1,14 @@
-import { settings } from "./settings";
+import { settings } from "./settings.js";
 
 export class Case2048
 {
     constructor()
     {
-        this.valeur = settings.valeurCase;
+        this.value = settings.valueCase;
     }
 
-    setValeur(valeur) 
+    setValue(value) 
     {
-        this.valeur = valeur;
+        this.value = value;
     }
 }

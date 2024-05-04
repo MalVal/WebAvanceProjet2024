@@ -1,4 +1,4 @@
-import { settings } from "./settings";
+import { settings } from "./settings.js";
 
 
 // jeu de tests
@@ -16,117 +16,117 @@ function moveLeft(tab)
 const tmp = [] ;
 for (let i = 0; i < tab.length; i++) 
 {
-    let ligne = [];
-    ligne = condenser(tab[i]);
-    ligne = fusionner(ligne);
-    ligne = condenser(ligne);
-    ligne = ajouterZeroFin(ligne);
-    tmp.push(ligne);
+    let row = [];
+    row = condense(tab[i]);
+    row = merge(row);
+    row = condense(row);
+    row = addZeroEnd(row);
+    tmp.push(row);
 }
 return tmp;
 }
 
 function moveRight(tab)
 {
-    let tabInverse = TabMiroir(tab);
+    let tabInverse = TabMirror(tab);
     tabInverse = moveLeft(tabInverse);
-    return TabMiroir(tabInverse); // il ne faut pas faire tabMiroir ici car mauvaise valeur sinon mais tout translater vers la droite !!!
+    return TabMirror(tabInverse); // il ne faut pas faire TabMirror ici car mauvaise valeur sinon mais tout translater vers la droite !!!
 }
 
 function moveUp(tab)
 {
-    let tabRotationGauche = RotationGauche(tab);
-    tabRotationGauche = moveLeft(tabRotationGauche);
-    return RotationDroite(tabRotationGauche);
+    let tabRotateLeft = RotationLeft(tab);
+    tabRotateLeft = moveLeft(tabRotateLeft);
+    return RotationRight(tabRotateLeft);
 }
 
 function moveDown(tab)
 {
-    let tabRotationDroite = RotationDroite(tab);
-    tabRotationDroite = moveLeft(tabRotationDroite);
-    return RotationGauche(tabRotationDroite);
+    let tabRotateRight = RotationRight(tab);
+    tabRotateRight = moveLeft(tabRotateRight);
+    return RotationLeft(tabRotateRight);
 }
 
-function condenser(ligne)
+function condense(row)
 {
-    const ligneSansZero = [];
-    for(let i = 0; i< ligne.length; i++)
+    const rowWithoutZero = [];
+    for(let i = 0; i< row.length; i++)
     {
-        if(ligne[i] !== 0)
+        if(row[i] !== 0)
         {
-            ligneSansZero.push(ligne[i]);
+            rowWithoutZero.push(row[i]);
         }
     }
-    return ligneSansZero;
+    return rowWithoutZero;
 }
 
-function fusionner(ligne)
+function merge(row)
 {
-    for(let i = 0; i< ligne.length - 1; i++)
+    for(let i = 0; i< row.length - 1; i++)
     {
-        if(ligne[i+1] == ligne[i])
+        if(row[i+1] == row[i])
         {
-            ligne[i]= ligne[i] * 2;
-            ligne[i+1] = 0;
+            row[i]= row[i] * 2;
+            row[i+1] = 0;
         }
     }
-    return ligne;
+    return row;
 }
 
-function ajouterZeroFin(ligne)
+function addZeroEnd(row)
 {
-    for(let i = 0; i < settings.taille; i++)
+    for(let i = 0; i < settings.size; i++)
     {
-      if(ligne[i] === undefined){
-        ligne[i] = 0;
+      if(row[i] === undefined){
+        row[i] = 0;
       }
     }
-    return ligne;
+    return row;
 }
 
-function TabMiroir(tab)
+function TabMirror(tab)
 {
     const tmp = [];
-    for(let i = 0; i < settings.taille; i++)
+    for(let i = 0; i < settings.size; i++)
     {
-        const ligne = [];
-        for(let j = settings.taille -1 ; j >= 0; j--)
+        const row = [];
+        for(let j = settings.size -1 ; j >= 0; j--)
         {
-            ligne.push(tab[i][j]);
+            row.push(tab[i][j]);
         }
-        tmp.push(ligne);
+        tmp.push(row);
     }
     return tmp;
 }
 
 
-function RotationGauche(tab)
+function RotationLeft(tab)
 {
     const tmp = [];
-    for(let j = settings.taille -1; j >= 0; j--)
+    for(let j = settings.size -1; j >= 0; j--)
     {
-        const ligne = [];
-        for(let i = 0; i < settings.taille; i++)
+        const row = [];
+        for(let i = 0; i < settings.size; i++)
         {
-            ligne.push(tab[i][j]);
+            row.push(tab[i][j]);
         }
-        tmp.push(ligne);
+        tmp.push(row);
     }
     return tmp;
 }
 
 
-function RotationDroite(tab)
+function RotationRight(tab)
 {
     const tmp = [];
-    for(let j = 0; j < settings.taille; j++)
+    for(let j = 0; j < settings.size; j++)
     {
-        const ligne = [];
+        const row = [];
         for(let i = 3; i >= 0; i--)
         {
-            ligne.push(tab[i][j]);
+            row.push(tab[i][j]);
         }
-        tmp.push(ligne);
+        tmp.push(row);
     }
     return tmp;
 }
