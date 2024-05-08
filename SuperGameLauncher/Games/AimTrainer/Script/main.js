@@ -1,78 +1,114 @@
-import { moveTarget, drawTarget, initializeTarget, isInsideTarget } from "./Target.js";
+import { settings } from './settings.js';
+import { moveTarget, removeTarget, drawTarget, calculateWall, resizeTarget } from "./target.js";
+import { isInsideTarget, setMousePos } from "./mouse.js";
+import { scoreUp } from "./score.js";
+import { fliplopMonster, fliplopShotGun } from "./helpers.js";
+import { drawShotGun } from "./shotGun.js";
+import { initialyzeHearts, checkHeart, bleeding } from "./heart.js";
 
-const myCanvasElement = document.getElementById('myCanvas')
-let myScore = document.getElementById('Score')
-let myHearts = document.querySelectorAll('.Heart')
-const ctx = myCanvasElement.getContext('2d')
+const myCanvasElement = document.getElementById('myCanvas');
+const ctx = myCanvasElement.getContext('2d');
+const StartButton = document.getElementById('btnStart');
 
-let score = 0
-let speed = 0.5;
-let isClick = false;
+let heartNumber = { value: 3 };
 
-initializeTarget(myCanvasElement);
+
+//Calculate the pente and the start for x=0 y=?
+calculateWall();
+
+fliplopMonster();
+fliplopShotGun();
 
 //animate every thing
 function animate() {
-    ctx.clearRect(0, 0, myCanvasElement.width, myCanvasElement.height);
-    moveTarget(myCanvasElement, speed);
-    drawTarget(ctx);
+    if (settings.game.value) {
+        removeTarget(ctx)
+        moveTarget(myCanvasElement);
+        resizeTarget();
+        drawTarget(ctx);
 
-    checkScore();
-    myScore.textContent = score;
 
-    requestAnimationFrame(animate);
+        drawShotGun(ctx);
+
+        checkHeart(heartNumber);
+        bleeding();
+
+        scoreUp();
+
+        requestAnimationFrame(animate);
+
+    }
+    else
+    {
+        cancelAnimationFrame(animate);
+
+        const scoreValue = settings.score.value;
+        const gameName = 'AimTrainer';
+        fetch(`../../src/PHP/results.php?game=${gameName}&score=${scoreValue}`)
+            .then(response =>
+            {
+                if (!response.ok)
+                {
+                    throw new Error('Network failed');
+                }
+                return response.json();
+            });
+
+
+        heartNumber = { value: 3 };
+        initialyzeHearts();
+        settings.score.value = 0;
+        StartButton.innerHTML = 'Start';
+        myCanvasElement.classList = 'blur';
+        settings.mouse.isClicked = false;
+    }
+
 }
 
+StartButton.addEventListener("mousedown", () => {
+    myCanvasElement.classList.toggle('blur');
+    if (settings.game.value)
+    {
+        cancelAnimationFrame(animate);
+        StartButton.innerHTML = 'Start';
+    }
+    else
+    {
+        requestAnimationFrame(animate);
+        StartButton.innerHTML = 'Stop';
+    }
 
+    settings.game.value = !settings.game.value;
+});
 
 //Detect if Click is down
-myCanvasElement.addEventListener("mousedown", (evt) => {
-    isClick = true;
+myCanvasElement.addEventListener("mousedown", () => {
+    settings.mouse.isClicked = true;
 });
 
 //Detect if Click is up
-myCanvasElement.addEventListener("mouseup", (evt) => {
-    isClick = false;
+myCanvasElement.addEventListener("mouseup", () => {
+    settings.mouse.isClicked = false;
 });
+
 
 //Add the Score if the Click is down and if I am in the square
 myCanvasElement.addEventListener("mousemove", (evt) => {
 
-    if (isClick === true) {
-        const posCanvas = myCanvasElement.getBoundingClientRect();
-        const mouseX = evt.clientX - posCanvas.left;
-        const mouseY = evt.clientY - posCanvas.top;
 
-        if (isInsideTarget(mouseX, mouseY)) {
-            score += 1;
+    if (settings.mouse.isClicked === true) {
+        const posCanvas = myCanvasElement.getBoundingClientRect();
+
+        //I don't know what happen but the coord for the mouse, and they were not similar for the target it was (0, 0) (300, 150)
+        //and for the mouse it was (0, 0) (500, 250) so I did a rules of 3 and I divided
+        settings.mouse.mouseX = ((evt.clientX - posCanvas.left) * 300 + 850) / posCanvas.width;
+        settings.mouse.mouseY = ((evt.clientY - posCanvas.top) * 150 + 670) / posCanvas.height;
+
+        setMousePos();
+
+        if (isInsideTarget()) {
+            settings.score.value += settings.score.add;
         }
     }
 });
 
-
-
-//Initialise Via à 1
-myHearts.forEach(heart =>  {
-    heart.Vie = 1;
-});
-
-
-//Verify the score and add 0.5 every 500
-function checkScore() {
-    if (score % 500 === 0)
-        speed = (score/500)/2 + 0.5;
-}
-
-//Verify if the life is Ok put Empty Heart if live loose
-function checkVie() {
-    myHearts.forEach(heart => {
-        if (heart.Vie === 0)
-            heart.setAttribute("src", "../img/Empty_Minecraft_Heart.png");
-        else
-            heart.setAttribute("src", "../img/Minecraft_Heart.png");
-    });
-}
-
-
-
-requestAnimationFrame(animate);
