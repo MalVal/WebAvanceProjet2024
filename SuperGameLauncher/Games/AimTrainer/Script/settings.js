@@ -48,7 +48,7 @@ export const settings = {
     score: {
         value: 0,
         //smth where if we add it we can reach 1
-        add: 5
+        add: 1
     },
     mouse: {
         isClicked: false,
