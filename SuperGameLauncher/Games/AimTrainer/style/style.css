@@ -1,0 +1,80 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#myCanvas {
+    width: 98%;
+    height: 80vh;
+    border: 2px solid black;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header {
+    background-color: #94B0DA;
+    color: #343F3E;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#HeartContainer {
+    width: 200px;
+    height: 66px;
+}
+
+body {
+    background-color: #DCEDFF;
+    display: block;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+#Container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 5px;
+
+}
+
+#ScoreContainer {
+    display: flex;
+    color: #343F3E;
+}
+
+.btn {
+    padding: 10px 20px;
+    font-size: 1em;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    align-self: center;
+}
+#btnBack {
+    background-color: #007BFF;
+}
+#btnStart {
+    border: 2px solid black;
+    background-color: #585858;
+}
+
+.blur {
+    filter: blur(5px);
+}
