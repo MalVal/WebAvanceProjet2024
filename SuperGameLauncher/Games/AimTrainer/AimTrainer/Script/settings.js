@@ -47,7 +47,7 @@ export const settings = {
     },
     score: {
         value: 0,
-        //smth where if we add it we can reach 1
+        //smth where if we add it we can reach 500
         add: 1
     },
     mouse: {

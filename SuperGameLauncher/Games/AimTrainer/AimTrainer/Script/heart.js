@@ -4,7 +4,6 @@ import { isInsideTarget } from "./mouse.js";
 
 const HeartElement = document.getElementById('HeartContainer')
 const ctx = HeartElement.getContext('2d')
-const bleed = document.getElementById('bleed')
 
 export function checkHeart(i)
 {
@@ -80,7 +79,7 @@ function removeImage() {
     ctx.clearRect(0, 0, HeartElement.width, HeartElement.height);
 }
 
-export function bleeding() {
+export function bleeding(myCanvasElement, bleed) {
     if (settings.canvasHeart.bleed) {
         bleed.style.backgroundColor = "rgba(255, 0, 0, 0.5)";
     }

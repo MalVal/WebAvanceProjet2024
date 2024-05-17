@@ -9,5 +9,5 @@ export function scoreUp () {
 
 //Verify the score and add 0.5 every 500
 function speedUp() {
-    settings.target.speed = Math.round((settings.score.value/1000))/2 + 0.5;
+    settings.target.speed = Math.round((settings.score.value/500))/4 + 0.5;
 }

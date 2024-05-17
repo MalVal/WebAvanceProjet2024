@@ -5,12 +5,15 @@ import { scoreUp } from "./score.js";
 import { fliplopMonster, fliplopShotGun } from "./helpers.js";
 import { drawShotGun } from "./shotGun.js";
 import { initialyzeHearts, checkHeart, bleeding } from "./heart.js";
+import { drawBackground } from "./image.js";
 
 const myCanvasElement = document.getElementById('myCanvas');
 const ctx = myCanvasElement.getContext('2d');
+const bleed = document.getElementById('bleed')
 const StartButton = document.getElementById('btnStart');
 
 let heartNumber = { value: 3 };
+
 
 
 //Calculate the pente and the start for x=0 y=?
@@ -25,13 +28,14 @@ function animate() {
         removeTarget(ctx)
         moveTarget(myCanvasElement);
         resizeTarget();
+        drawBackground(ctx);
         drawTarget(ctx);
 
 
         drawShotGun(ctx);
 
         checkHeart(heartNumber);
-        bleeding();
+        bleeding(myCanvasElement, bleed);
 
         scoreUp();
 
@@ -42,22 +46,22 @@ function animate() {
     {
         cancelAnimationFrame(animate);
 
-        const scoreValue = settings.score.value;
-        const gameName = 'AimTrainer';
-        fetch(`../../src/PHP/results.php?game=${gameName}&score=${scoreValue}`)
-            .then(response =>
-            {
-                if (!response.ok)
-                {
-                    throw new Error('Network failed');
-                }
-                return response.json();
-            });
+        if (settings.score.value !== 0) {
+            const scoreValue = settings.score.value;
+            const gameName = 'AimTrainer';
+            fetch(`../../src/PHP/results.php?game=${gameName}&score=${scoreValue}`)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network failed');
+                    }
+                    return response.json();
+                });
 
+            settings.score.value = 0;
+        }
 
         heartNumber = { value: 3 };
         initialyzeHearts();
-        settings.score.value = 0;
         StartButton.innerHTML = 'Start';
         myCanvasElement.classList = 'blur';
         settings.mouse.isClicked = false;
