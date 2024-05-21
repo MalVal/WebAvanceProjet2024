@@ -1,5 +1,8 @@
+import { settings } from "./settings";
+
 if (document.title === "Indianna")
 {
+    
     const canvas = document.getElementById('gameCanvas'); // Utilisez getElementById pour obtenir le canvas
     const c = canvas.getContext('2d');
 
@@ -34,8 +37,8 @@ if (document.title === "Indianna")
                 x: 0,
                 y: 1
             };
-            this.width = 30;
-            this.height = 52;
+            this.width = settings.widthplayer;
+            this.height = settings.heightplayer;
             this.pv=50;
             this.lastside=0;
             this.image = new Image();
@@ -43,7 +46,7 @@ if (document.title === "Indianna")
             this.tabimgG = ['./Image/paternchoisip1b.png','./Image/paternchoisip2b.png','./Image/paternchoisip3b.png','./Image/paternchoisip4b.png','./Image/paternchoisip5b.png','./Image/paternchoisip6b.png','./Image/paternchoisip7b.png','./Image/paternchoisip8b.png','./Image/paternchoisip9b.png','./Image/paternchoisip10b.png'];
             this.tabimgD = ['./Image/paternchoisip1.png','./Image/paternchoisip2.png','./Image/paternchoisip3.png','./Image/paternchoisip4.png','./Image/paternchoisip5.png','./Image/paternchoisip6.png','./Image/paternchoisip7.png','./Image/paternchoisip8.png','./Image/paternchoisip9.png','./Image/paternchoisip10.png'];
             this.imageIndex = 0;
-            this.vitesseanim=5;
+            this.vitesseanim=settings.indiceframe;
         }
         reset()
         {
@@ -112,8 +115,8 @@ if (document.title === "Indianna")
                 x: ennemi.position.x-choixcoter(ennemi),
                 y: ennemi.position.y
             };
-            this.width = 30;
-            this.height = 30;
+            this.width = settings.widthobj;
+            this.height = settings.heightonj;
             this.take= 0;
             this.image = new Image();
             this.image.src = './Image/coffrefort.png'; 
@@ -149,8 +152,8 @@ if (document.title === "Indianna")
                 x: platform.position.x + platform.width / 2,
                 y: platform.position.y-30
             };
-            this.width = 30;
-            this.height = 30;
+            this.width = settings.widthen;
+            this.height = settings.heighten;
             this.image = new Image();
             this.image.src = './Image/canon.png'; 
         }
@@ -173,10 +176,10 @@ if (document.title === "Indianna")
                 x: ennemi.position.x + 5, 
                 y: ennemi.position.y - 5   
             };
-            this.width = 15;
-            this.height = 15;
+            this.width = settings.widthat;
+            this.height = settings.heigthat;
             this.initialX = ennemi.position.x + 5;  
-            this.speed = 2;  
+            this.speed = settings.speedat;  
             this.image = new Image();
             if(choixcoter(this)>0)
             {
